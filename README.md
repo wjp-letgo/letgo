@@ -19,13 +19,13 @@ To install letgo package, you need to install Go and set your Go workspace first
 1. The first need [Go](https://golang.org/) installed (**version 1.12+ is required**), then you can use the below Go command to install letgo.
 
 ```sh
-$ go get -u github.com/wjpxxx/letgo
+$ go get -u github.com/wjp-letgo/letgo
 ```
 
 2. Import it in your code:
 
 ```go
-import "github.com/wjpxxx/letgo"
+import "github.com/wjp-letgo/letgo"
 ```
 ## Quick start
 
@@ -35,9 +35,9 @@ import "github.com/wjpxxx/letgo"
 package main
 
 import (
-    "github.com/wjpxxx/letgo/web"
-    "github.com/wjpxxx/letgo/web/context"
-	"github.com/wjpxxx/letgo/web/filter"
+    "github.com/wjp-letgo/letgo/web"
+    "github.com/wjp-letgo/letgo/web/context"
+	"github.com/wjp-letgo/letgo/web/filter"
 	"fmt"
 )
 
@@ -120,10 +120,10 @@ func main() {
 package main
 
 import (
-    "github.com/wjpxxx/letgo/web"
-    "github.com/wjpxxx/letgo/web/context"
-	"github.com/wjpxxx/letgo/web/filter"
-	"github.com/wjpxxx/letgo/web/limiting"
+    "github.com/wjp-letgo/letgo/web"
+    "github.com/wjp-letgo/letgo/web/context"
+	"github.com/wjp-letgo/letgo/web/filter"
+	"github.com/wjp-letgo/letgo/web/limiting"
 	"fmt"
 )
 
@@ -181,9 +181,9 @@ func main() {
 package main
 
 import (
-	"github.com/wjpxxx/letgo/web/captcha"
+	"github.com/wjp-letgo/letgo/web/captcha"
 	"image/color"
-	"github.com/wjpxxx/letgo/file"
+	"github.com/wjp-letgo/letgo/file"
 	"fmt"
 )
 
@@ -212,7 +212,7 @@ func main(){
 ```go
 package main
 
-import "github.com/wjpxxx/letgo/db/mysql"
+import "github.com/wjp-letgo/letgo/db/mysql"
 func main() {
     model:=mysql.NewModel("dbname","tablename")
     m:=model.Fields("*").
@@ -249,7 +249,7 @@ func main() {
 ```go
 package main
 import (
-	"github.com/wjpxxx/letgo/db/mongo"
+	"github.com/wjp-letgo/letgo/db/mongo"
 )
 func main() {
 	type Student struct {
@@ -269,9 +269,9 @@ func main() {
 package main
 
 import (
-	"github.com/wjpxxx/letgo/db/mysql"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/db/mongo"
+	"github.com/wjp-letgo/letgo/db/mysql"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/db/mongo"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -351,7 +351,7 @@ func init(){
 ## RPC
 
 ```go
-import "github.com/wjpxxx/letgo/net/rpc"
+import "github.com/wjp-letgo/letgo/net/rpc"
 
 func main(){
 	s:=rpc.NewServer()
@@ -381,7 +381,7 @@ func main(){
 ## Command
 
 ```go
-import "github.com/wjpxxx/letgo/command/command"
+import "github.com/wjp-letgo/letgo/command/command"
 
 func main(){
 	cmd:=command.New().Cd("D:\\Development\\go\\web\\src").SetCMD("dir")
@@ -451,8 +451,8 @@ The client sends the console command to the server, and at the same time, it als
 package main
 
 import (
-	"github.com/wjpxxx/letgo/plugin"
-	"github.com/wjpxxx/letgo/plugin/sync/syncconfig"
+	"github.com/wjp-letgo/letgo/plugin"
+	"github.com/wjp-letgo/letgo/plugin/sync/syncconfig"
 	"fmt"
 	"os"
 )
@@ -482,7 +482,7 @@ Creating memory resident applications When the stop method is called, all tasks 
 package main
 
 import (
-	"github.com/wjpxxx/letgo/cron/task"
+	"github.com/wjp-letgo/letgo/cron/task"
 	"time"
 	"fmt"
 )
@@ -511,8 +511,8 @@ Creating Crontab
 
 package main
 import (
-	"github.com/wjpxxx/letgo/cron/context"
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/cron/context"
+	"github.com/wjp-letgo/letgo/lib"
 	"fmt"
 	"time"
 )
@@ -538,7 +538,7 @@ func main() {
 
 package main
 import (
-	"github.com/wjpxxx/letgo/db/mysql"
+	"github.com/wjp-letgo/letgo/db/mysql"
 )
 func main() {
 	//自动生成数据的所有表的model和entity源码
@@ -580,7 +580,7 @@ code will be generated in the directory model / entity
 
 package main
 import (
-	"github.com/wjpxxx/letgo/dcode"
+	"github.com/wjp-letgo/letgo/dcode"
 )
 func main() {
 	dcode.DcodeRouter("router/router.go","./controller")
@@ -632,7 +632,7 @@ By using //@json or //@Json
 
 package main
 import (
-	"github.com/wjpxxx/letgo/dcode"
+	"github.com/wjp-letgo/letgo/dcode"
 )
 func main() {
 	dcode.DcodeJson("json/")
