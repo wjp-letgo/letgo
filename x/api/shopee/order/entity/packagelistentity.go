@@ -1,29 +1,28 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //PackageListEntity
-type PackageListEntity struct{
-	PackageNumber string `json:"package_number"`
-	LogisticsStatus string `json:"logistics_status"`
-	ShippingCarrier string `json:"shipping_carrier"`
-	ItemList []ItemListEntity `json:"item_list"`
+type PackageListEntity struct {
+	PackageNumber   string           `json:"package_number"`
+	LogisticsStatus string           `json:"logistics_status"`
+	ShippingCarrier string           `json:"shipping_carrier"`
+	ItemList        []ItemListEntity `json:"item_list"`
 }
 
 //String
-func(p PackageListEntity)String()string{
+func (p PackageListEntity) String() string {
 	return lib.ObjectToString(p)
 }
 
-
 //PackageListRequestEntity
-type PackageListRequestEntity struct{
+type PackageListRequestEntity struct {
 	ItemList []PackageListRequestItemListEntity `json:"item_list"`
 }
 
 //String
-func(p PackageListRequestEntity)String()string{
+func (p PackageListRequestEntity) String() string {
 	return lib.ObjectToString(p)
 }

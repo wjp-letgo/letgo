@@ -1,8 +1,9 @@
 package log
 
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"os"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 type LogConfig struct{

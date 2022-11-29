@@ -1,11 +1,13 @@
 package logistics
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	"github.com/wjpxxx/letgo/x/api/shopee/logistics/entity"
-	"github.com/wjpxxx/letgo/lib"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	"github.com/wjp-letgo/letgo/x/api/shopee/logistics/entity"
 )
+
 //常量
 const (
 	NORMAL_AIR_WAYBILL ShippingDocumentType="NORMAL_AIR_WAYBILL"

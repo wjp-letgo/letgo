@@ -2,14 +2,15 @@ package session
 
 import (
 	"fmt"
-	"github.com/wjpxxx/letgo/cache"
-	"github.com/wjpxxx/letgo/cache/filecache"
-	"github.com/wjpxxx/letgo/cache/icache"
-	"github.com/wjpxxx/letgo/encry"
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
 	"sync"
 	"time"
+
+	"github.com/wjp-letgo/letgo/cache"
+	"github.com/wjp-letgo/letgo/cache/filecache"
+	"github.com/wjp-letgo/letgo/cache/icache"
+	"github.com/wjp-letgo/letgo/encry"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //Session

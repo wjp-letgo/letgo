@@ -1,22 +1,22 @@
 package captcha
 
 import (
-	"image"
-	"image/color"
-	"image/png"
-	"path/filepath"
-	"image/gif"
-	"image/jpeg"
-	"image/draw"
-	"math"
-	"os"
 	"bytes"
 	"encoding/base64"
 	"fmt"
+	"image"
+	"image/color"
+	"image/draw"
+	"image/gif"
+	"image/jpeg"
+	"image/png"
+	"math"
+	"os"
+	"path/filepath"
 
 	"github.com/golang/freetype"
 	"github.com/golang/freetype/truetype"
-	"github.com/wjpxxx/letgo/file"
+	"github.com/wjp-letgo/letgo/file"
 )
 
 //Image

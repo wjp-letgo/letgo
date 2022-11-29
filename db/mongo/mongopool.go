@@ -3,14 +3,16 @@ package mongo
 import (
 	"context"
 	"fmt"
-	"github.com/wjpxxx/letgo/log"
 	"strings"
 	"sync"
 	"time"
 
+	"github.com/wjp-letgo/letgo/log"
+
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
+
 //configLock
 var configLock sync.Mutex
 //DBInfo

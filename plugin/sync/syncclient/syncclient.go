@@ -1,9 +1,11 @@
 package syncclient
+
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/plugin/sync/syncconfig"
 	"fmt"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/plugin/sync/syncconfig"
 )
 
 //config

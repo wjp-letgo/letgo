@@ -1,9 +1,10 @@
 package captcha
 
 import (
-	"testing"
 	"image/color"
-	"github.com/wjpxxx/letgo/file"
+	"testing"
+
+	"github.com/wjp-letgo/letgo/file"
 )
 
 func TestCaptcha(t *testing.T){

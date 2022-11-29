@@ -1,12 +1,13 @@
 package log
 
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"io"
 	"os"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 

@@ -2,10 +2,11 @@ package api
 
 import (
 	"bytes"
-	"github.com/wjpxxx/letgo/command"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/net/rpc"
-	"github.com/wjpxxx/letgo/plugin/sync/syncconfig"
+
+	"github.com/wjp-letgo/letgo/command"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/net/rpc"
+	"github.com/wjp-letgo/letgo/plugin/sync/syncconfig"
 )
 
 //Command

@@ -1,29 +1,30 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //GetPublishTaskResult
-type GetPublishTaskResult struct{
+type GetPublishTaskResult struct {
 	commonentity.Result
 	Response GetPublishTaskResultResponse `json:"response"`
-	Warning string `json:"warning"`
+	Warning  string                       `json:"warning"`
 }
 
 //String
-func(g GetPublishTaskResult)String()string{
+func (g GetPublishTaskResult) String() string {
 	return lib.ObjectToString(g)
 }
+
 //GetPublishTaskResultResponse
-type GetPublishTaskResultResponse struct{
-	PublishStatus string `json:"publish_status"`
-	Success GetPublishTaskResultSuccessEntity `json:"success"`
-	Failed GetPublishTaskResultFailureEntity `json:"failed"`
+type GetPublishTaskResultResponse struct {
+	PublishStatus string                            `json:"publish_status"`
+	Success       GetPublishTaskResultSuccessEntity `json:"success"`
+	Failed        GetPublishTaskResultFailureEntity `json:"failed"`
 }
 
 //String
-func(g GetPublishTaskResultResponse)String()string{
+func (g GetPublishTaskResultResponse) String() string {
 	return lib.ObjectToString(g)
 }

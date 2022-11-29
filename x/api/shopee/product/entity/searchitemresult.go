@@ -1,28 +1,30 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //SearchItemResult
-type SearchItemResult struct{
+type SearchItemResult struct {
 	commonentity.Result
 	Response SearchItemResultResponse `json:"response"`
-	Warning []string `json:"warning"`
-}
-//String
-func(r SearchItemResult)String()string{
-	return lib.ObjectToString(r)
-}
-//SearchItemResultResponse
-type SearchItemResultResponse struct{
-	ItemIdList []int64 `json:"item_id_list"`
-	TotalCount int `json:"total_count"`
-	NextOffset string `json:"next_offset"`
+	Warning  []string                 `json:"warning"`
 }
 
 //String
-func(r SearchItemResultResponse)String()string{
+func (r SearchItemResult) String() string {
+	return lib.ObjectToString(r)
+}
+
+//SearchItemResultResponse
+type SearchItemResultResponse struct {
+	ItemIdList []int64 `json:"item_id_list"`
+	TotalCount int     `json:"total_count"`
+	NextOffset string  `json:"next_offset"`
+}
+
+//String
+func (r SearchItemResultResponse) String() string {
 	return lib.ObjectToString(r)
 }

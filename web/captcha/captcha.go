@@ -1,16 +1,16 @@
 package captcha
 
 import (
-	"io/ioutil"
-	"image/color"
 	"image"
+	"image/color"
 	"image/draw"
+	"io/ioutil"
 	"math"
 
-	"github.com/golang/freetype/truetype"
 	"github.com/golang/freetype"
-	"github.com/wjpxxx/letgo/log"
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/golang/freetype/truetype"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/log"
 )
 
 //常量

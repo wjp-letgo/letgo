@@ -1,10 +1,11 @@
 package mysql
 
-import(
+import (
 	"fmt"
 	"strings"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/file"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //GenModelAndEntity 自动生成Model和Entity
@@ -198,8 +199,8 @@ func (g *genInfo) getModelTemplate()string{
 	tmp:=`package model
 
 import (
-    "github.com/wjpxxx/letgo/db/mysql"
-    "github.com/wjpxxx/letgo/lib"
+    "github.com/wjp-letgo/letgo/db/mysql"
+    "github.com/wjp-letgo/letgo/lib"
 	"%s/model/entity"
 )
 
@@ -269,7 +270,7 @@ func (g *genInfo)getEntityTemplate()string{
 	tmp:=`package entity
 
 import (
-    "github.com/wjpxxx/letgo/lib"
+    "github.com/wjp-letgo/letgo/lib"
 )
 
 //%s

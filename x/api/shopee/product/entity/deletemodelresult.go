@@ -1,17 +1,17 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //DeleteModelResult
-type DeleteModelResult struct{
+type DeleteModelResult struct {
 	commonentity.Result
 	Warning string `json:"warning"`
 }
 
 //String
-func(g DeleteModelResult)String()string{
+func (g DeleteModelResult) String() string {
 	return lib.ObjectToString(g)
 }

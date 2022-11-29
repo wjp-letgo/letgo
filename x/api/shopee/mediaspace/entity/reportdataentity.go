@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 //ReportDataEntity
 type ReportDataEntity struct{
 	UploadCost int `json:"upload_cost"`

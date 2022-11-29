@@ -3,7 +3,8 @@ package binding
 import (
 	"html/template"
 	"net/http"
-	"github.com/wjpxxx/letgo/web/headerlock"
+
+	"github.com/wjp-letgo/letgo/web/headerlock"
 )
 
 //HTML

@@ -1,15 +1,15 @@
 package filecache
 
 import (
-	"github.com/wjpxxx/letgo/cache/icache"
-	"github.com/wjpxxx/letgo/encry"
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"os"
 	"strings"
-)
 
+	"github.com/wjp-letgo/letgo/cache/icache"
+	"github.com/wjp-letgo/letgo/encry"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
+)
 
 //FileCache 文件缓存
 type FileCache struct {

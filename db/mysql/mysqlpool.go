@@ -1,13 +1,15 @@
 package mysql
 
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"database/sql"
 	"fmt"
-	"time"
-	"github.com/wjpxxx/letgo/log"
 	"sync"
+	"time"
+
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/log"
 )
+
 //configLock
 var configLock sync.Mutex
 //MysqlPooler 全局连接池接口

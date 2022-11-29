@@ -1,26 +1,25 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //NonIntegratedEntity
-type ShipOrderRequestNonIntegratedEntity struct{
+type ShipOrderRequestNonIntegratedEntity struct {
 	TrackingNumber string `json:"tracking_number"`
 }
 
 //String
-func(n ShipOrderRequestNonIntegratedEntity)String()string{
+func (n ShipOrderRequestNonIntegratedEntity) String() string {
 	return lib.ObjectToString(n)
 }
 
-
 //BatchShipOrderRequestNonIntegratedEntity
-type BatchShipOrderRequestNonIntegratedEntity struct{
+type BatchShipOrderRequestNonIntegratedEntity struct {
 	TrackingNumber string `json:"tracking_number"`
 }
 
 //String
-func(b BatchShipOrderRequestNonIntegratedEntity)String()string{
+func (b BatchShipOrderRequestNonIntegratedEntity) String() string {
 	return lib.ObjectToString(b)
 }

@@ -1,16 +1,16 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //AddressTypeConfigEntity
-type SetAddressConfigResult struct{
+type SetAddressConfigResult struct {
 	commonentity.Result
 }
 
 //String
-func(a SetAddressConfigResult)String()string{
+func (a SetAddressConfigResult) String() string {
 	return lib.ObjectToString(a)
 }

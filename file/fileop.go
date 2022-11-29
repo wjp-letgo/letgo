@@ -2,12 +2,13 @@ package file
 
 import (
 	"bufio"
-	"github.com/wjpxxx/letgo/lib"
-	"os"
 	"io/ioutil"
-	"strings"
+	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //BaseName 函数返回路径中的文件名部分。

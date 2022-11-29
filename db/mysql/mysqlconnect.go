@@ -1,8 +1,9 @@
 package mysql
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 //MysqlConnect mysql连接配置数据
 type MysqlConnect struct {
 	Master SlaveDB `json:"master"`

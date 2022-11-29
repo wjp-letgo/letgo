@@ -1,12 +1,13 @@
 package memcache
 
 import (
-	"github.com/wjpxxx/letgo/cache/icache"
-	"github.com/wjpxxx/letgo/file"
-	"sync"
-	"github.com/bradfitz/gomemcache/memcache"
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
+	"sync"
+
+	"github.com/bradfitz/gomemcache/memcache"
+	"github.com/wjp-letgo/letgo/cache/icache"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //全局实现者

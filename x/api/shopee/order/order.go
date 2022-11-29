@@ -1,10 +1,11 @@
 package order
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	"github.com/wjpxxx/letgo/x/api/shopee/order/entity"
-	"github.com/wjpxxx/letgo/lib"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	"github.com/wjp-letgo/letgo/x/api/shopee/order/entity"
 )
 const (
 	CREATE_TIME TimeRangeField="create_time"

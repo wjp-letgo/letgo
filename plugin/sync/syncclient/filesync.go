@@ -1,15 +1,17 @@
 package syncclient
 
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/net/rpc"
-	"github.com/wjpxxx/letgo/encry"
-	"github.com/wjpxxx/letgo/cache/filecache"
-	"github.com/wjpxxx/letgo/plugin/sync/syncconfig"
-	"github.com/wjpxxx/letgo/plugin/sync/walkdir"
 	"path/filepath"
-	"github.com/wjpxxx/letgo/log"
+
+	"github.com/wjp-letgo/letgo/cache/filecache"
+	"github.com/wjp-letgo/letgo/encry"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/log"
+	"github.com/wjp-letgo/letgo/net/rpc"
+	"github.com/wjp-letgo/letgo/plugin/sync/syncconfig"
+	"github.com/wjp-letgo/letgo/plugin/sync/walkdir"
 )
+
 //FileSync
 type FileSync struct {
 	config syncconfig.ClientConfig

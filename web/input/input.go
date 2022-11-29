@@ -3,11 +3,6 @@ package input
 import (
 	"bytes"
 	"errors"
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/log"
-	"github.com/wjpxxx/letgo/web/binding"
-	"github.com/wjpxxx/letgo/web/headerlock"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -15,6 +10,12 @@ import (
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/log"
+	"github.com/wjp-letgo/letgo/web/binding"
+	"github.com/wjp-letgo/letgo/web/headerlock"
 )
 
 const defaultMultipartMem = 64 << 20 //64MB

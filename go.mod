@@ -1,4 +1,4 @@
-module github.com/wjpxxx/letgo
+module github.com/wjp-letgo/letgo
 
 go 1.13
 

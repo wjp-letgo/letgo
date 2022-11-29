@@ -1,9 +1,10 @@
 package mysql
 
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"testing"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //TestModel

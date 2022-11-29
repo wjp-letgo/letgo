@@ -1,16 +1,15 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //ShopEntity
-type ShopEntity struct{
+type ShopEntity struct {
 	ShopID int64 `json:"shop_id"`
 }
 
-
 //String
-func(g ShopEntity)String()string{
+func (g ShopEntity) String() string {
 	return lib.ObjectToString(g)
 }

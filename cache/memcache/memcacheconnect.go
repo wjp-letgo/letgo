@@ -1,22 +1,23 @@
 package memcache
 
-import "github.com/wjpxxx/letgo/lib"
+import "github.com/wjp-letgo/letgo/lib"
 
 //MemCacheConnect 连接配置
 type MemCacheConnect struct {
-	Master SlaveDB `json:"master"`
-	Slave []SlaveDB `json:"slave"`
+	Master SlaveDB   `json:"master"`
+	Slave  []SlaveDB `json:"slave"`
 }
+
 //String 连接配置
-func (m MemCacheConnect)String()string{
+func (m MemCacheConnect) String() string {
 	return lib.ObjectToString(m)
 }
 
 //Slave 从库配置数据
 type SlaveDB struct {
-	Name string `json:"name"`
-	Host string `json:"host"`
-	Port string `json:"port"`
-	MaxIdle int `json:"maxIdle"`
-	IdleTimeout int `json:"idleTimeout"`
+	Name        string `json:"name"`
+	Host        string `json:"host"`
+	Port        string `json:"port"`
+	MaxIdle     int    `json:"maxIdle"`
+	IdleTimeout int    `json:"idleTimeout"`
 }

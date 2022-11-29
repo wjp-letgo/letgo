@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 //VideoUrlEntity
 type VideoUrlEntity struct{
 	VideoUrlRegion string `json:"video_url_region"`

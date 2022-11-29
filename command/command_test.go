@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"testing"
-	"github.com/wjpxxx/letgo/lib"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 

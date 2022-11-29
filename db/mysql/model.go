@@ -1,12 +1,12 @@
 package mysql
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	//"github.com/wjpxxx/letgo/log"
+	"github.com/wjp-letgo/letgo/lib"
+	//"github.com/wjp-letgo/letgo/log"
 	"fmt"
 	"math"
-	"strings"
 	"regexp"
+	"strings"
 )
 
 //db 全局变量

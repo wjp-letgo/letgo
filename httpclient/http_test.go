@@ -1,10 +1,11 @@
 package httpclient
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"net/http"
 	"fmt"
+	"net/http"
 	"testing"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 func TestHttp(t *testing.T){

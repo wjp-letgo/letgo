@@ -1,13 +1,14 @@
 package walkdir
 
 import (
-	"github.com/wjpxxx/letgo/log"
-	"github.com/wjpxxx/letgo/file"
+	"fmt"
 	"io/ioutil"
 	"path/filepath"
-	"strings"
-	"fmt"
 	"regexp"
+	"strings"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/log"
 )
 
 //Walk 遍历目录

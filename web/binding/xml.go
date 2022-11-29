@@ -1,11 +1,12 @@
 package binding
 
 import (
+	"bytes"
 	"encoding/xml"
 	"errors"
 	"net/http"
-	"bytes"
-	"github.com/wjpxxx/letgo/web/headerlock"
+
+	"github.com/wjp-letgo/letgo/web/headerlock"
 )
 
 //xmlBinding

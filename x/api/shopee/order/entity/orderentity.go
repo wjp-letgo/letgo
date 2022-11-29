@@ -1,9 +1,10 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"strings"
 	"reflect"
+	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //OrderEntity

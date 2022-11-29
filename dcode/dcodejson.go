@@ -2,10 +2,11 @@ package dcode
 
 import (
 	"fmt"
-	"github.com/wjpxxx/letgo/lib"
 	"go/ast"
 	"go/token"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //路由检测
@@ -58,7 +59,7 @@ func (c *DCodeJson) Finish() {
 		}
 	}
 	if c.hasJson {
-		CreateImport(c.mfile, "github.com/wjpxxx/letgo/lib")
+		CreateImport(c.mfile, "github.com/wjp-letgo/letgo/lib")
 	}
 }
 

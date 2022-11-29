@@ -1,9 +1,9 @@
 package binding
 
-
 import (
 	"net/http"
-	"github.com/wjpxxx/letgo/web/headerlock"
+
+	"github.com/wjp-letgo/letgo/web/headerlock"
 )
 
 //textBinding

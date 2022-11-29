@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 //SipAffiShopsEntity
 type SipAffiShopsEntity struct{
 	AffiShopID int64 `json:"affi_shop_id"`

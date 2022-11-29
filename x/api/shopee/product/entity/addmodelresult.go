@@ -1,27 +1,28 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //AddModelResult
-type AddModelResult struct{
+type AddModelResult struct {
 	commonentity.Result
-	Warning string `json:"warning"`
+	Warning  string                 `json:"warning"`
 	Response AddModelResultResponse `json:"response"`
 }
 
 //String
-func(g AddModelResult)String()string{
+func (g AddModelResult) String() string {
 	return lib.ObjectToString(g)
 }
+
 //AddModelResultResponse
-type AddModelResultResponse struct{
+type AddModelResultResponse struct {
 	model []ModelEntity `json:"model"`
 }
 
 //String
-func(g AddModelResultResponse)String()string{
+func (g AddModelResultResponse) String() string {
 	return lib.ObjectToString(g)
 }

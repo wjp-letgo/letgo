@@ -1,7 +1,9 @@
 package limiting
+
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"sort"
+
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //计数器算法

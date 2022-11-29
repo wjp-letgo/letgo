@@ -1,17 +1,17 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //DimensionEntity
-type DimensionEntity struct{
+type DimensionEntity struct {
 	PackageLength int `json:"package_length"`
-	PackageWidth int `json:"package_width"`
+	PackageWidth  int `json:"package_width"`
 	PackageHeight int `json:"package_height"`
 }
 
 //String
-func(d DimensionEntity)String()string{
+func (d DimensionEntity) String() string {
 	return lib.ObjectToString(d)
 }

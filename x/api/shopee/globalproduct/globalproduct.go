@@ -1,9 +1,9 @@
 package globalproduct
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	globalentity "github.com/wjpxxx/letgo/x/api/shopee/globalproduct/entity"
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	globalentity "github.com/wjp-letgo/letgo/x/api/shopee/globalproduct/entity"
 )
 const (
 	NORMAL_BRAND BrandStatus =1

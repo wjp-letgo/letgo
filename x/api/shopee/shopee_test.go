@@ -1,13 +1,15 @@
 package shopee
 
-import(
+import (
 	"testing"
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
-	//"github.com/wjpxxx/letgo/x/api/shopee/order"
-	//orderEntity "github.com/wjpxxx/letgo/x/api/shopee/order/entity"
-	//"github.com/wjpxxx/letgo/file"
-	//"github.com/wjpxxx/letgo/lib"
+
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+
+	//"github.com/wjp-letgo/letgo/x/api/shopee/order"
+	//orderEntity "github.com/wjp-letgo/letgo/x/api/shopee/order/entity"
+	//"github.com/wjp-letgo/letgo/file"
+	//"github.com/wjp-letgo/letgo/lib"
 	"fmt"
 )
 func TestShopee(t *testing.T){

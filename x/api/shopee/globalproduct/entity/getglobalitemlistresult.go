@@ -1,31 +1,31 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //GetItemListResult
-type GetGlobalItemListResult struct{
+type GetGlobalItemListResult struct {
 	commonentity.Result
 	Response GetGlobalItemListResultResponse `json:"response"`
-	Warning string `json:"warning"`
+	Warning  string                          `json:"warning"`
 }
 
 //String
-func(g GetGlobalItemListResult)String()string{
+func (g GetGlobalItemListResult) String() string {
 	return lib.ObjectToString(g)
 }
 
 //GetItemListResultResponse
-type GetGlobalItemListResultResponse struct{
+type GetGlobalItemListResultResponse struct {
 	GlobalItemList []GlobalItemListEntity `json:"global_item_list"`
-	TotalCount int `json:"total_count"`
-	HasNextPage bool `json:"has_next_page"`
-	Offset string `json:"offset"`
+	TotalCount     int                    `json:"total_count"`
+	HasNextPage    bool                   `json:"has_next_page"`
+	Offset         string                 `json:"offset"`
 }
 
 //String
-func(g GetGlobalItemListResultResponse)String()string{
+func (g GetGlobalItemListResultResponse) String() string {
 	return lib.ObjectToString(g)
 }

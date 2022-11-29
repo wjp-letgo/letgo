@@ -1,9 +1,10 @@
 package memcache
 
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"time"
+
+	"github.com/wjp-letgo/letgo/lib"
 
 	"github.com/bradfitz/gomemcache/memcache"
 )

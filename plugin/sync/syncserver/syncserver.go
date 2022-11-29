@@ -1,13 +1,15 @@
 package syncserver
 
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/net/rpc"
-	"github.com/wjpxxx/letgo/plugin/sync/api"
-	"github.com/wjpxxx/letgo/plugin/sync/syncconfig"
 	"fmt"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/net/rpc"
+	"github.com/wjp-letgo/letgo/plugin/sync/api"
+	"github.com/wjp-letgo/letgo/plugin/sync/syncconfig"
 )
+
 //SyncServer
 type SyncServer struct{}
 

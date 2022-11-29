@@ -1,16 +1,16 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //TierVariationNameLengthLimitEntity
-type TierVariationNameLengthLimitEntity struct{
+type TierVariationNameLengthLimitEntity struct {
 	MinLimit int `json:"min_limit"`
 	MaxLimit int `json:"max_limit"`
 }
 
 //String
-func(p TierVariationNameLengthLimitEntity)String()string{
+func (p TierVariationNameLengthLimitEntity) String() string {
 	return lib.ObjectToString(p)
 }

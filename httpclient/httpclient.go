@@ -1,25 +1,26 @@
 package httpclient
 
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
+	"bytes"
+	"compress/gzip"
 	"crypto/tls"
 	"crypto/x509"
-	"bytes"
-	"net"
-	"time"
-	"io"
-	"net/http"
-	"io/ioutil"
-	"compress/gzip"
-	"fmt"
-	"net/url"
-	"strings"
 	"encoding/json"
-	"mime/multipart"
 	"encoding/xml"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"mime/multipart"
+	"net"
+	"net/http"
 	"net/http/httputil"
 	"net/textproto"
+	"net/url"
+	"strings"
+	"time"
+
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 const (

@@ -1,15 +1,15 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //ItemCountLimitEntity
-type ItemCountLimitEntity struct{
+type ItemCountLimitEntity struct {
 	MaxLimit int `json:"max_limit"`
 }
 
 //String
-func(p ItemCountLimitEntity)String()string{
+func (p ItemCountLimitEntity) String() string {
 	return lib.ObjectToString(p)
 }

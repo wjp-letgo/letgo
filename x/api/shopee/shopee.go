@@ -1,24 +1,24 @@
 package shopee
 
-import(
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	"github.com/wjpxxx/letgo/x/api/shopee/auth"
-	authEntity "github.com/wjpxxx/letgo/x/api/shopee/auth/entity"
-	orderEntity "github.com/wjpxxx/letgo/x/api/shopee/order/entity"
-	logisticsEntity "github.com/wjpxxx/letgo/x/api/shopee/logistics/entity"
-	productEntity "github.com/wjpxxx/letgo/x/api/shopee/product/entity"
-	globalProductEntity "github.com/wjpxxx/letgo/x/api/shopee/globalproduct/entity"
-	mediaspaceEntity "github.com/wjpxxx/letgo/x/api/shopee/mediaspace/entity"
-	shopEntity "github.com/wjpxxx/letgo/x/api/shopee/shop/entity"
-	merchantEntity "github.com/wjpxxx/letgo/x/api/shopee/merchant/entity"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
-	"github.com/wjpxxx/letgo/x/api/shopee/order"
-	"github.com/wjpxxx/letgo/x/api/shopee/logistics"
-	"github.com/wjpxxx/letgo/x/api/shopee/product"
-	"github.com/wjpxxx/letgo/x/api/shopee/globalproduct"
-	"github.com/wjpxxx/letgo/x/api/shopee/mediaspace"
-	"github.com/wjpxxx/letgo/x/api/shopee/shop"
-	"github.com/wjpxxx/letgo/x/api/shopee/merchant"
+import (
+	"github.com/wjp-letgo/letgo/x/api/shopee/auth"
+	authEntity "github.com/wjp-letgo/letgo/x/api/shopee/auth/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	"github.com/wjp-letgo/letgo/x/api/shopee/globalproduct"
+	globalProductEntity "github.com/wjp-letgo/letgo/x/api/shopee/globalproduct/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/logistics"
+	logisticsEntity "github.com/wjp-letgo/letgo/x/api/shopee/logistics/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/mediaspace"
+	mediaspaceEntity "github.com/wjp-letgo/letgo/x/api/shopee/mediaspace/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/merchant"
+	merchantEntity "github.com/wjp-letgo/letgo/x/api/shopee/merchant/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/order"
+	orderEntity "github.com/wjp-letgo/letgo/x/api/shopee/order/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/product"
+	productEntity "github.com/wjp-letgo/letgo/x/api/shopee/product/entity"
+	"github.com/wjp-letgo/letgo/x/api/shopee/shop"
+	shopEntity "github.com/wjp-letgo/letgo/x/api/shopee/shop/entity"
 )
 
 //Shopeer

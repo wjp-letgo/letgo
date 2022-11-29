@@ -1,9 +1,8 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
-
 
 //RecipientAddress
 type RecipientAddressEntity struct{

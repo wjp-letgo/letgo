@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 //ItemListEntity
 type ItemListEntity struct{
 	ItemID int64 `json:"item_id"`

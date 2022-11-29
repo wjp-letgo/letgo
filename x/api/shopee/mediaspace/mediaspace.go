@@ -1,9 +1,9 @@
 package mediaspace
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	mediaspaceEntity "github.com/wjpxxx/letgo/x/api/shopee/mediaspace/entity"
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	mediaspaceEntity "github.com/wjp-letgo/letgo/x/api/shopee/mediaspace/entity"
 )
 
 //MediaSpace

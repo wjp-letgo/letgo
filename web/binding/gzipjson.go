@@ -1,12 +1,13 @@
 package binding
 
 import (
+	"bytes"
 	"encoding/json"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/web/headerlock"
 	"errors"
 	"net/http"
-	"bytes"
+
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/web/headerlock"
 )
 
 //gzipJsonBinding

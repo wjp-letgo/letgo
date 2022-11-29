@@ -2,7 +2,6 @@ package dcode
 
 import (
 	"bytes"
-	"github.com/wjpxxx/letgo/file"
 	"go/ast"
 	"go/format"
 	"go/parser"
@@ -11,6 +10,8 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/file"
 )
 
 //ControllerInfo 控制器信息

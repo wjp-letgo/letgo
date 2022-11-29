@@ -1,26 +1,28 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //DeleteGlobalItemResult
-type DeleteGlobalItemResult struct{
+type DeleteGlobalItemResult struct {
 	commonentity.Result
 	Response DeleteGlobalItemResultResponse `json:"response"`
-	Warning string `json:"warning"`
+	Warning  string                         `json:"warning"`
 }
 
 //String
-func(g DeleteGlobalItemResult)String()string{
+func (g DeleteGlobalItemResult) String() string {
 	return lib.ObjectToString(g)
 }
+
 //DeleteGlobalItemResultResponse
-type DeleteGlobalItemResultResponse struct{
+type DeleteGlobalItemResultResponse struct {
 	FailureDeleteItem []FailureDeleteItemEntity `json:"failure_delete_item"`
 }
+
 //String
-func(g DeleteGlobalItemResultResponse)String()string{
+func (g DeleteGlobalItemResultResponse) String() string {
 	return lib.ObjectToString(g)
 }

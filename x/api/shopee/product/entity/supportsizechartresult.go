@@ -1,27 +1,28 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //SupportSizeChartResult
-type SupportSizeChartResult struct{
+type SupportSizeChartResult struct {
 	commonentity.Result
-	Warning string `json:"warning"`
+	Warning  string                         `json:"warning"`
 	Response SupportSizeChartResultResponse `json:"response"`
 }
 
 //String
-func(r SupportSizeChartResult)String()string{
+func (r SupportSizeChartResult) String() string {
 	return lib.ObjectToString(r)
 }
+
 //SupportSizeChartResultResponse
-type SupportSizeChartResultResponse struct{
+type SupportSizeChartResultResponse struct {
 	SupportSizeChart bool `json:"support_size_chart"`
 }
 
 //String
-func(r SupportSizeChartResultResponse)String()string{
+func (r SupportSizeChartResultResponse) String() string {
 	return lib.ObjectToString(r)
 }

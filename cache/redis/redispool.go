@@ -1,11 +1,12 @@
 package redis
 
 import (
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"time"
-	"github.com/wjpxxx/letgo/log"
+
 	"github.com/garyburd/redigo/redis"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/log"
 )
 
 //RedisPooler 连接池接口

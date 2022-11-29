@@ -1,8 +1,8 @@
 package entity
 
-import(
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
-	"github.com/wjpxxx/letgo/lib"
+import (
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //CancelOrderResult

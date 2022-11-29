@@ -1,15 +1,18 @@
 package email
+
 import (
 	"crypto/tls"
+	"fmt"
 	"io/ioutil"
+	"net/http"
 	"net/smtp"
 	"strings"
-	"net/http"
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/encry"
-	"fmt"
+
+	"github.com/wjp-letgo/letgo/encry"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
 )
+
 /**
 邮件类 基类
 **/

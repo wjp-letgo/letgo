@@ -1,14 +1,15 @@
 package config
 
-import(
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/encry"
-	"github.com/wjpxxx/letgo/httpclient"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
-	logisticsEntity "github.com/wjpxxx/letgo/x/api/shopee/logistics/entity"
+import (
 	"errors"
 	"fmt"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/encry"
+	"github.com/wjp-letgo/letgo/httpclient"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
+	logisticsEntity "github.com/wjp-letgo/letgo/x/api/shopee/logistics/entity"
 )
 
 //Config

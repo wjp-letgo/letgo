@@ -42,7 +42,7 @@ func (c *DCodeRouter) Finish() {
 }
 
 var routerNeedImport []string = []string{
-	"github.com/wjpxxx/letgo/web", "github.com/wjpxxx/letgo/web/context", "github.com/wjpxxx/letgo/web/filter",
+	"github.com/wjp-letgo/letgo/web", "github.com/wjp-letgo/letgo/web/context", "github.com/wjp-letgo/letgo/web/filter",
 }
 
 //astFile 根

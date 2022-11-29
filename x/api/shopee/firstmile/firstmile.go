@@ -1,9 +1,9 @@
 package firstmile
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	firstmileEntity "github.com/wjpxxx/letgo/x/api/shopee/firstmile/entity"
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	firstmileEntity "github.com/wjp-letgo/letgo/x/api/shopee/firstmile/entity"
 )
 
 //FirstMile

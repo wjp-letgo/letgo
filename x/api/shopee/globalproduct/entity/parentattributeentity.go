@@ -1,16 +1,16 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //ParentAttributeEntity
-type ParentAttributeEntity struct{
+type ParentAttributeEntity struct {
 	ParentAttributeID int64 `json:"parent_attribute_id"`
-	ParentValueID int64 `json:"parent_value_id"`
+	ParentValueID     int64 `json:"parent_value_id"`
 }
 
 //String
-func(a ParentAttributeEntity)String()string{
+func (a ParentAttributeEntity) String() string {
 	return lib.ObjectToString(a)
 }

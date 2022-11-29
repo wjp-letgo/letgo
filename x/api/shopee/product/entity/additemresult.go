@@ -1,19 +1,19 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //AddItemResult
-type AddItemResult struct{
+type AddItemResult struct {
 	commonentity.Result
-	Warning string `json:"warning"`
-	ItemDangerous int `json:"item_dangerous"`
-	Response ItemEntity `json:"response"`
+	Warning       string     `json:"warning"`
+	ItemDangerous int        `json:"item_dangerous"`
+	Response      ItemEntity `json:"response"`
 }
 
 //String
-func(g AddItemResult)String()string{
+func (g AddItemResult) String() string {
 	return lib.ObjectToString(g)
 }

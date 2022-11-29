@@ -1,12 +1,13 @@
 package redis
 
 import (
-	"github.com/wjpxxx/letgo/file"
-	"github.com/wjpxxx/letgo/lib"
 	"fmt"
 	"sync"
-	"github.com/wjpxxx/letgo/log"
+
 	"github.com/garyburd/redigo/redis"
+	"github.com/wjp-letgo/letgo/file"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/log"
 )
 
 //全局实现者

@@ -1,42 +1,43 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //GetShippingDocumentParameterResult
-type GetShippingDocumentParameterResult struct{
+type GetShippingDocumentParameterResult struct {
 	commonentity.Result
-	Warning []ShippingDocumentParameterRequestOrderListEntity `json:"warning"`
-	Response GetShippingDocumentParameterResultResponse `json:"response"`
+	Warning  []ShippingDocumentParameterRequestOrderListEntity `json:"warning"`
+	Response GetShippingDocumentParameterResultResponse        `json:"response"`
 }
 
 //String
-func(g GetShippingDocumentParameterResult)String()string{
+func (g GetShippingDocumentParameterResult) String() string {
 	return lib.ObjectToString(g)
 }
 
 //GetShippingDocumentParameterResultResponse
-type GetShippingDocumentParameterResultResponse struct{
+type GetShippingDocumentParameterResultResponse struct {
 	ResultList []GetShippingDocumentParameterResultEntity `json:"result_list"`
 }
 
 //String
-func(g GetShippingDocumentParameterResultResponse)String()string{
+func (g GetShippingDocumentParameterResultResponse) String() string {
 	return lib.ObjectToString(g)
 }
+
 //GetShippingDocumentParameterResultEntity
-type GetShippingDocumentParameterResultEntity struct{
-	OrderSn string `json:"order_sn"`
-	PackageNumber string `json:"package_number"`
-	SuggestShippingDocumentType string `json:"suggest_shipping_document_type"`
+type GetShippingDocumentParameterResultEntity struct {
+	OrderSn                        string   `json:"order_sn"`
+	PackageNumber                  string   `json:"package_number"`
+	SuggestShippingDocumentType    string   `json:"suggest_shipping_document_type"`
 	SelectableShippingDocumentType []string `json:"selectable_shipping_document_type"`
-	FailError string `json:"fail_error"`
-	FailMessage string `json:"fail_message"`
+	FailError                      string   `json:"fail_error"`
+	FailMessage                    string   `json:"fail_message"`
 }
 
 //String
-func(g GetShippingDocumentParameterResultEntity)String()string{
+func (g GetShippingDocumentParameterResultEntity) String() string {
 	return lib.ObjectToString(g)
 }

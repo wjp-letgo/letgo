@@ -1,16 +1,16 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
-	"github.com/wjpxxx/letgo/x/api/shopee/commonentity"
+	"github.com/wjp-letgo/letgo/lib"
+	"github.com/wjp-letgo/letgo/x/api/shopee/commonentity"
 )
 
 //DeleteAddressResult
-type DeleteAddressResult struct{
+type DeleteAddressResult struct {
 	commonentity.Result
 }
 
 //String
-func(d DeleteAddressResult)String()string{
+func (d DeleteAddressResult) String() string {
 	return lib.ObjectToString(d)
 }

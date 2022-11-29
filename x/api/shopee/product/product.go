@@ -1,10 +1,11 @@
 package product
 
 import (
-	shopeeConfig "github.com/wjpxxx/letgo/x/api/shopee/config"
-	"github.com/wjpxxx/letgo/x/api/shopee/product/entity"
-	"github.com/wjpxxx/letgo/lib"
 	"strings"
+
+	"github.com/wjp-letgo/letgo/lib"
+	shopeeConfig "github.com/wjp-letgo/letgo/x/api/shopee/config"
+	"github.com/wjp-letgo/letgo/x/api/shopee/product/entity"
 )
 
 const (

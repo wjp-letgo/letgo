@@ -1,16 +1,16 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //PriceLimitEntity
-type PriceLimitEntity struct{
+type PriceLimitEntity struct {
 	MinLimit float32 `json:"min_limit"`
 	MaxLimit float32 `json:"max_limit"`
 }
 
 //String
-func(p PriceLimitEntity)String()string{
+func (p PriceLimitEntity) String() string {
 	return lib.ObjectToString(p)
 }

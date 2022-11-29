@@ -1,15 +1,15 @@
 package entity
 
 import (
-	"github.com/wjpxxx/letgo/lib"
+	"github.com/wjp-letgo/letgo/lib"
 )
 
 //ParentBrandEntity
-type ParentBrandEntity struct{
+type ParentBrandEntity struct {
 	ParentBrandID int64 `json:"parent_brand_id"`
 }
 
 //String
-func(a ParentBrandEntity)String()string{
+func (a ParentBrandEntity) String() string {
 	return lib.ObjectToString(a)
 }
