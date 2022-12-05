@@ -718,8 +718,14 @@ func (m *Model)getDeleteName()string{
 //getAddDeleteName 获得删除字段名称,在增改的时候使用
 func (m *Model)getAddDeleteName()string{
 	if m.DeleteName==""{
+		if m.aliasName!=""{
+			return m.aliasName+".`delete_time`"
+		}
 		return "delete_time"
 	}
+	if m.aliasName!=""{
+			return m.aliasName+".`"+m.DeleteName+"`"
+		}
 	return m.DeleteName
 }
 //getWhere
