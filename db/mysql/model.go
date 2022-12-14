@@ -735,44 +735,51 @@ func (m *Model)getWhere()(string,[]interface{}){
 	for i,w:=range m.where{
 		var q string=""
 		if w.value!=nil{
-			if w.symbol=="in" ||w.symbol=="not in"{
-				var mq []string
-				switch w.value.(type) {
-				case []int:
-					vs:=w.value.([]int)
-					for _,v:=range vs{
-						values=append(values, v)
-						mq=append(mq, "?")
+			s := lib.InterfaceToString(w.value)
+			regex, _ := regexp.Compile("`[\\s\\S]+?`")
+			arr:=regex.FindStringSubmatchIndex(s)
+			if len(arr)>0&&arr[0]==0 {
+				q = s
+			} else {
+				if w.symbol=="in" ||w.symbol=="not in"{
+					var mq []string
+					switch w.value.(type) {
+					case []int:
+						vs:=w.value.([]int)
+						for _,v:=range vs{
+							values=append(values, v)
+							mq=append(mq, "?")
+						}
+					case []int64:
+						vs:=w.value.([]int64)
+						for _,v:=range vs{
+							values=append(values, v)
+							mq=append(mq, "?")
+						}
+					case []string:
+						vs:=w.value.([]string)
+						for _,v:=range vs{
+							values=append(values, v)
+							mq=append(mq, "?")
+						}
+					case []float32:
+						vs:=w.value.([]float32)
+						for _,v:=range vs{
+							values=append(values, v)
+							mq=append(mq, "?")
+						}
+					case []float64:
+						vs:=w.value.([]float64)
+						for _,v:=range vs{
+							values=append(values, v)
+							mq=append(mq, "?")
+						}
 					}
-				case []int64:
-					vs:=w.value.([]int64)
-					for _,v:=range vs{
-						values=append(values, v)
-						mq=append(mq, "?")
-					}
-				case []string:
-					vs:=w.value.([]string)
-					for _,v:=range vs{
-						values=append(values, v)
-						mq=append(mq, "?")
-					}
-				case []float32:
-					vs:=w.value.([]float32)
-					for _,v:=range vs{
-						values=append(values, v)
-						mq=append(mq, "?")
-					}
-				case []float64:
-					vs:=w.value.([]float64)
-					for _,v:=range vs{
-						values=append(values, v)
-						mq=append(mq, "?")
-					}
+					q="("+strings.Join(mq,",")+")"
+				}else{
+					values=append(values, w.value)
+					q="?"
 				}
-				q="("+strings.Join(mq,",")+")"
-			}else{
-				values=append(values, w.value)
-				q="?"
 			}
 		}
 		if i==0{
