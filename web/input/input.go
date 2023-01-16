@@ -310,6 +310,12 @@ func (i *Input) BindJSON(value interface{}) error {
 	return i.BindWith(value, binding.JSON)
 }
 
+//BindJSONByKey
+func (i *Input) BindJSONByKey(key string,value interface{}) bool {
+	data:=i.Param(key).Value
+	return lib.StringToObject(lib.ObjectToString(data),value)
+}
+
 //BindXML
 func (i *Input) BindXML(value interface{}) error {
 	return i.BindWith(value, binding.XML)
