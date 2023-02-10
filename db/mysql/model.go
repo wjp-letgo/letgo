@@ -65,7 +65,7 @@ type Modeler interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 	Update(data lib.SqlIn)int64
 	Insert(row lib.SqlIn)int64
@@ -96,7 +96,7 @@ type Fielder interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 }
 //Aliaser 另外取名接口
@@ -115,7 +115,7 @@ type Aliaser interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 	Update(data lib.SqlIn)int64
 }
@@ -152,7 +152,7 @@ type Oner interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Union(model Modeler) Unioner
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 	Update(data lib.SqlIn)int64
@@ -174,7 +174,7 @@ type Wherer interface{
 	Find()lib.SqlRow
 	Count()int64
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Union(model Modeler) Unioner
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 	Update(data lib.SqlIn)int64
@@ -192,7 +192,7 @@ type GroupByer interface{
 	Find()lib.SqlRow
 	Count()int64
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Union(model Modeler) Unioner
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 }
@@ -212,7 +212,7 @@ type Havinger interface{
 	Find()lib.SqlRow
 	Count()int64
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Union(model Modeler) Unioner
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 }
@@ -220,13 +220,15 @@ type Havinger interface{
 type OrderByer interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 }
 //Limiter
 type Limiter interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
+	Update(data lib.SqlIn)int64
+	Delete() int64
 }
 //Unioner
 type Unioner interface{
@@ -234,7 +236,7 @@ type Unioner interface{
 	Get()lib.SqlRows
 	Find()lib.SqlRow
 	OrderBy(orderBy string)OrderByer
-	Limit(offset,count int)Limiter
+	Limit(offset... int)Limiter
 	Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow)
 }
 //Init 初始化
@@ -925,6 +927,13 @@ func (m *Model)getLimit()string{
 	}
 	return fmt.Sprintf(" LIMIT %d,%d",m.offset,m.limit)
 }
+//getUpdateAndDeleteLimit
+func (m *Model)getUpdateAndDeleteLimit()string{
+	if m.limit==0{
+		return ""
+	}
+	return fmt.Sprintf(" LIMIT %d",m.limit)
+}
 //getFields 获得查询字段
 func (m *Model)getFields() string{
 	if len(m.fields)==0{
@@ -1122,9 +1131,14 @@ func (m *Model)OrderBy(orderBy string) OrderByer{
 	return m
 }
 //Limit 排序
-func (m *Model)Limit(offset,count int)Limiter{
-	m.limit=count
-	m.offset=offset
+func (m *Model)Limit(offset... int)Limiter{
+	if len(offset)==2{
+		m.limit=offset[1]
+		m.offset=offset[0]
+	}else{
+		m.offset=0
+		m.limit=offset[0]
+	}
 	return m
 }
 //Update 更新操作
@@ -1133,6 +1147,7 @@ func (m *Model)Update(data lib.SqlIn)int64{
 	where,whereValues:=m.getWhere()
 	table:=NewTable(m.db,tableName)
 	data=m.addDeleteTime(data)
+	where=where+m.getUpdateAndDeleteLimit()
 	i:=table.Update(data,values,where,whereValues...)
 	m.lastSql=table.GetLastSql()
 	m.preSql,m.preParams=table.GetSqlInfo()
@@ -1219,6 +1234,7 @@ func (m *Model)Delete() int64{
 	tableName,values:=m.getTables()
 	where,whereValues:=m.getWhere()
 	table:=NewTable(m.db,tableName)
+	where=where+m.getUpdateAndDeleteLimit()
 	effects:=table.Delete(values,where,whereValues...)
 	m.lastSql=table.GetLastSql()
 	m.preSql,m.preParams=table.GetSqlInfo()
