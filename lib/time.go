@@ -248,9 +248,39 @@ func GetHour() int {
 	return time.Now().Hour()
 }
 
+
+//获得当前时间的小时数
+func GetHourByTimeInt(t int) int {
+	var t1 int64 = int64(t)
+	tm := time.Unix(t1, 0)
+	return tm.Hour()
+}
+
+//获得当前时间的小时数
+func GetHourByTimeLong(t int64) int {
+	var t1 int64 = t / 1000
+	tm := time.Unix(t1, 0)
+	return tm.Hour()
+}
+
 //获得当前时间的分钟数
 func GetMinute() int {
 	return time.Now().Minute()
+}
+
+
+//获得当前时间的分钟数
+func GetMinuteByTimeInt(t int) int {
+	var t1 int64 = int64(t)
+	tm := time.Unix(t1, 0)
+	return tm.Minute()
+}
+
+//获得当前时间的分钟数
+func GetMinuteByTimeLong(t int64) int {
+	var t1 int64 = t / 1000
+	tm := time.Unix(t1, 0)
+	return tm.Minute()
 }
 
 //获得当前时间的星期几 从0-6  其中0表示星期日
@@ -270,6 +300,26 @@ func GetWeekByTimeInt(t int) int {
 	var t1 int64 = int64(t)
 	tm := time.Unix(t1, 0)
 	return int(tm.Weekday())
+}
+
+//获得当前时间的秒数
+func GetSecond() int {
+	return time.Now().Second()
+}
+
+
+//获得当前时间的秒数
+func GetSecondByTimeInt(t int) int {
+	var t1 int64 = int64(t)
+	tm := time.Unix(t1, 0)
+	return tm.Second()
+}
+
+//获得当前时间的秒数
+func GetSecondByTimeLong(t int64) int {
+	var t1 int64 = t / 1000
+	tm := time.Unix(t1, 0)
+	return tm.Second()
 }
 
 //获得周几字符串
