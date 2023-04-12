@@ -6,7 +6,7 @@ import (
 	"github.com/wjp-letgo/letgo/web/headerlock"
 	"github.com/wjp-letgo/letgo/web/input"
 
-	//"github.com/wjp-letgo/letgo/log"
+	"github.com/wjp-letgo/letgo/log"
 	"html/template"
 	"net/http"
 )
@@ -248,6 +248,11 @@ func (o *Output) Text(code int, value interface{}) error {
 
 //Redirect 跳转
 func (o *Output) Redirect(code int, location string) {
+	defer func(){
+		if ex:=recover();ex!=nil{
+			log.DebugPrint("异常捕获 Redirect 请求:%s,错误:%v",o.in.R().URL.Path,ex)
+		}
+	}()
 	if o.status == 0 && code > 0 {
 		o.status = code
 		http.Redirect(o.writer, o.in.R(), location, code)
@@ -256,6 +261,11 @@ func (o *Output) Redirect(code int, location string) {
 
 //NotFound 404
 func (o *Output) NotFound() {
+	defer func(){
+		if ex:=recover();ex!=nil{
+			log.DebugPrint("异常捕获 NotFound 请求:%s,错误:%v",o.in.R().URL.Path,ex)
+		}
+	}()
 	if o.status == 0 {
 		o.status = 404
 		http.NotFound(o.writer, o.in.R())
