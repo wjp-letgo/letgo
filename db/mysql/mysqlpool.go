@@ -155,5 +155,10 @@ func(m *MysqlPool)open(connect SlaveDB) *sql.DB{
 //IsTransaction 是否开启事务
 func(m *MysqlPool) IsTransaction(connectName string) bool{
 	//fmt.Println("=============",m.pool)
-	return m.pool[connectName].isTransaction
+	if _,ok:=m.pool[connectName];ok{
+		return m.pool[connectName].isTransaction
+	}else{
+		log.DebugPrint("IsTransaction失败 数据库连接不存在:%s",connectName)
+		return false
+	}
 }
