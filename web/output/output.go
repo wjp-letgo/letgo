@@ -267,8 +267,10 @@ func (o *Output) NotFound() {
 		}
 	}()
 	if o.status == 0 {
+		headerlock.HeaderMapMutex.Lock()
 		o.status = 404
 		http.NotFound(o.writer, o.in.R())
+		headerlock.HeaderMapMutex.Unlock()
 	}
 }
 
