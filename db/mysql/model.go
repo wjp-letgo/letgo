@@ -31,6 +31,7 @@ type Model struct{
 	db *DB
 	SoftDelete bool
 	DeleteName string
+	tmpSoftDelete int
 }
 //cond 操作
 type cond struct{
@@ -77,6 +78,7 @@ type Modeler interface{
 	Optimize() int64
 	Delete() int64
 	SoftDel() int64
+	IgnoreSoftDel()
 	DB()DBer
 }
 //Fielder 字段暴露出去的接口
@@ -262,6 +264,25 @@ func (m *Model)Fields(fields ...string) Fielder{
 	m.fields=fields
 	return m
 }
+
+//忽略软删除条件
+func (m *Model)IgnoreSoftDel(){
+	if m.SoftDelete{
+		m.tmpSoftDelete=1
+	}else{
+		m.tmpSoftDelete=2
+	}
+	m.SoftDelete=false
+}
+//还原软删除
+func (m *Model)resetSoftDel(){
+	if m.tmpSoftDelete==1{
+		m.SoftDelete=true
+	}else if m.tmpSoftDelete==2{
+		m.SoftDelete=false
+	}
+}
+
 //GetLastSql 获得最后执行的sql
 func (m *Model)GetLastSql() string{
 	return m.lastSql
@@ -968,6 +989,7 @@ func (m *Model)GetModelSql()(string,[]interface{}){
 }
 //Count 统计数量
 func (m *Model)Count()int64{
+	defer m.resetSoftDel()
 	return m.CountByClear(true)
 }
 //CountByClear 统计数量
@@ -1014,6 +1036,7 @@ func (m *Model)CountByClear(isClear bool)int64{
 }
 //Get 获得列表
 func (m *Model)Get()lib.SqlRows{
+	defer m.resetSoftDel()
 	return m.GetByClear(true)
 }
 
@@ -1061,6 +1084,7 @@ func (m *Model)GetByClear(isClear bool)lib.SqlRows{
 }
 //Find 获得单条数据
 func (m *Model)Find()lib.SqlRow{
+	defer m.resetSoftDel()
 	tableName,values:=m.getTables()
 	where,whereValues:=m.getWhere()
 	if len(whereValues)>0{
@@ -1112,6 +1136,7 @@ func (m *Model)clear(){
 
 //Pager 分页查询
 func (m *Model)Pager(page, pageSize int)(lib.SqlRows,lib.SqlRow){
+	defer m.resetSoftDel()
 	offset := pageSize * (page - 1)
 	m.offset=offset
 	m.limit=pageSize
@@ -1143,6 +1168,7 @@ func (m *Model)Limit(offset... int)Limiter{
 }
 //Update 更新操作
 func (m *Model)Update(data lib.SqlIn)int64{
+	defer m.resetSoftDel()
 	tableName,values:=m.getTables()
 	where,whereValues:=m.getWhere()
 	table:=NewTable(m.db,tableName)
@@ -1156,6 +1182,7 @@ func (m *Model)Update(data lib.SqlIn)int64{
 }
 //Insert 插入操作
 func (m *Model)Insert(row lib.SqlIn)int64{
+	defer m.resetSoftDel()
 	table:=NewTable(m.db,m.tableName)
 	row=m.addDeleteTime(row)
 	id:=table.Insert(row)
@@ -1184,6 +1211,7 @@ func (m *Model)addDeleteTime(row lib.SqlIn)lib.SqlIn{
 }
 //Replace 插入操作
 func (m *Model)Replace(row lib.SqlIn) int64{
+	defer m.resetSoftDel()
 	table:=NewTable(m.db,m.tableName)
 	row=m.addDeleteTime(row)
 	effects:=table.Replace(row)
@@ -1194,6 +1222,7 @@ func (m *Model)Replace(row lib.SqlIn) int64{
 }
 //InsertOnDuplicate 如果你插入的记录导致一个UNIQUE索引或者primary key(主键)出现重复，那么就会认为该条记录存在，则执行update语句而不是insert语句，反之，则执行insert语句而不是更新语句。
 func (m *Model)InsertOnDuplicate(row lib.SqlIn,updateRow lib.SqlIn) int64{
+	defer m.resetSoftDel()
 	table:=NewTable(m.db,m.tableName)
 	row=m.addDeleteTime(row)
 	effects:=table.InsertOnDuplicate(row,updateRow)
@@ -1231,6 +1260,7 @@ func (m *Model)Optimize() int64{
 }
 //Delete 删除
 func (m *Model)Delete() int64{
+	defer m.resetSoftDel()
 	tableName,values:=m.getTables()
 	where,whereValues:=m.getWhere()
 	table:=NewTable(m.db,tableName)
