@@ -278,8 +278,10 @@ func (m *Model)IgnoreSoftDel(){
 func (m *Model)resetSoftDel(){
 	if m.tmpSoftDelete==1{
 		m.SoftDelete=true
+		m.tmpSoftDelete=0
 	}else if m.tmpSoftDelete==2{
 		m.SoftDelete=false
+		m.tmpSoftDelete=0
 	}
 }
 
