@@ -316,7 +316,6 @@ func DesEncryptECB(src, key string) string {
 	return fmt.Sprintf("%X", out)
 }
 
-
 //ECB解密
 //参数src:要解密的数据
 //参数key:密钥,长度必须是8位数不能超过
@@ -473,4 +472,24 @@ func Rsa2(origData string, block []byte) (sign string) {
 	s, _ := rsa.SignPKCS1v15(nil, privateKey.(*rsa.PrivateKey), crypto.SHA256, digest)
 	sign = base64.StdEncoding.EncodeToString(s)
 	return
+}
+//AEAD_AES_256_GCM 解密
+func DecryptAeAdAes256Gcm(ciphertext, nonce, associatedData string, aesKey []byte) string {
+	decodedCiphertext, err := base64.StdEncoding.DecodeString(ciphertext)
+	if err != nil {
+		return ""
+	}
+	c, err := aes.NewCipher(aesKey)
+	if err != nil {
+		return ""
+	}
+	gcm, err := cipher.NewGCM(c)
+	if err != nil {
+		return ""
+	}
+	dataBytes, err := gcm.Open(nil, []byte(nonce), decodedCiphertext, []byte(associatedData))
+	if err != nil {
+		return ""
+	}
+	return string(dataBytes)
 }
