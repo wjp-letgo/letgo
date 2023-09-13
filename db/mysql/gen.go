@@ -255,6 +255,10 @@ func (m *%s)SaveByInRow(id int64,data lib.SqlIn) int64{
         return m.Insert(data)
     }
 }
+//GetById 通过id获得数据
+func (m *%s) GetById(id int64) lib.SqlRow{
+    return m.Where("id", id).Find()
+}
 //GetEntityById 通过id获得数据
 func (m *%s) GetEntityById(id int64) entity.%s{
     var out entity.%s
