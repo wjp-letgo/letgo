@@ -142,6 +142,7 @@ func (g *genInfo) genModel(table string){
 		entityName,
 		modelName,
 		modelName,
+		modelName,
 		entityName,
 		entityName,
 	)
