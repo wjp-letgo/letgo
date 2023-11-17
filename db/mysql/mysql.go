@@ -49,6 +49,7 @@ type DBer interface{
 	Desc(tableName string)lib.Columns
 	IsExist(tableName string) bool
 	ShowTables()[]string
+	ShowCreateTable(tableName string)string
 }
 //DBPool 连接池接口
 type DBPool interface{
@@ -118,6 +119,16 @@ func (db *DB)prepare(sql string)(*sql.Stmt, error){
 		return db.dbPool.GetIncludeReadDB(db.connectName).Prepare(sql)
 	}
 }
+
+func (db *DB)ShowCreateTable(tableName string)string{
+	sql:=fmt.Sprintf("show create table `%s`.`%s`", db.databaseName,tableName)
+	lst:= db.Query(sql)
+	if len(lst)>0{
+		return lst[0]["Create Table"].String()
+	}
+	return ""
+}
+
 //Desc 查询表结构
 func (db *DB)Desc(tableName string)lib.Columns{
 	sql:=fmt.Sprintf("select * from information_schema.columns where table_schema = '%s' and table_name = '%s'", db.databaseName,tableName)
