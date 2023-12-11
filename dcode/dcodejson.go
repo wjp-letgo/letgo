@@ -137,9 +137,9 @@ func (c *DCodeJson) genDecl(decl *ast.GenDecl) {
 	if decl.Doc != nil {
 		var isjson int
 		for _, v := range decl.Doc.List {
-			if v.Text == "//@json" {
+			if v.Text == "//@json"||v.Text=="// @json" {
 				isjson = 1
-			} else if v.Text == "//@Json" {
+			} else if v.Text == "//@Json" ||v.Text=="// @Json"{
 				isjson = 2
 			}
 		}
