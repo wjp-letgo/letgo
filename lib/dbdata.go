@@ -175,6 +175,17 @@ func MergeInRow(values ...InRow)InRow{
 	return result
 }
 
+// MergeInRow 合并SqlIn
+func MergeSqlIn(values ...SqlIn) SqlIn {
+	result := make(SqlIn)
+	for _, row := range values {
+		for k, v := range row {
+			result[k] = v
+		}
+	}
+	return result
+}
+
 //MergeInRow 合并InRow
 func MergeIntRow(values ...IntRow)IntRow{
 	result:=make(IntRow)
