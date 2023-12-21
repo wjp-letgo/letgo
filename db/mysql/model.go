@@ -14,6 +14,7 @@ var db *DB
 //Model 模型
 type Model struct{
 	tableName string
+	oldTableName string
 	aliasName string
 	otherTableName []joinCond
 	dbName string
@@ -244,6 +245,7 @@ type Unioner interface{
 //Init 初始化
 func (m *Model) Init(dbName,tableName string) Modeler{
 	m.tableName=tableName
+	m.oldTableName=tableName
 	m.dbName=dbName
 	m.db=Connect(m.dbName,m.dbName)
 	return m
@@ -251,6 +253,7 @@ func (m *Model) Init(dbName,tableName string) Modeler{
 //Init 初始化
 func (m *Model) InitByConnectName(connectName,dbName,tableName string) Modeler{
 	m.tableName=tableName
+	m.oldTableName=tableName
 	m.dbName=dbName
 	m.db=Connect(connectName,m.dbName)
 	return m
@@ -296,7 +299,7 @@ func (m *Model)GetSqlInfo()(string,[]interface{}){
 //Alias 命名
 func (m *Model)Alias(name string) Aliaser{
 	m.aliasName=name
-	if strings.Index(m.tableName, " as ")==-1{
+	if !strings.Contains(m.tableName, " as "){
 		m.tableName=fmt.Sprintf("%s as %s", m.tableName, name)
 	}
 	return m
@@ -1133,6 +1136,8 @@ func (m *Model)clear(){
 	m.orderBy=""
 	m.offset=0
 	m.limit=0
+	m.aliasName=""
+	m.tableName=m.oldTableName
 	m.preParams=m.preParams[:0]
 }
 
