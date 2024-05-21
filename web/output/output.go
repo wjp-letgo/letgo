@@ -6,12 +6,13 @@ import (
 	"github.com/wjp-letgo/letgo/web/headerlock"
 	"github.com/wjp-letgo/letgo/web/input"
 
-	"github.com/wjp-letgo/letgo/log"
 	"html/template"
 	"net/http"
+
+	"github.com/wjp-letgo/letgo/log"
 )
 
-//Output
+// Output
 type Output struct {
 	writer http.ResponseWriter
 	in     *input.Input
@@ -19,7 +20,7 @@ type Output struct {
 	status int
 }
 
-//Init 初始化
+// Init 初始化
 func (o *Output) Init(writer http.ResponseWriter, in *input.Input, templ *template.Template) {
 	o.writer = writer
 	o.in = in
@@ -27,7 +28,7 @@ func (o *Output) Init(writer http.ResponseWriter, in *input.Input, templ *templa
 	o.status = 0
 }
 
-//Header 设置头
+// Header 设置头
 func (o *Output) Header(key, value string) {
 	headerlock.HeaderMapMutex.Lock()
 	if o != nil && o.writer != nil && o.writer.Header() != nil {
@@ -36,18 +37,18 @@ func (o *Output) Header(key, value string) {
 	headerlock.HeaderMapMutex.Unlock()
 }
 
-//JSON
+// JSON
 func (o *Output) JSON(code int, value interface{}) error {
 	return o.Render(code, value, binding.JSON)
 }
 
-//GZIPJSON
+// GZIPJSON
 func (o *Output) GZIPJSON(code int, value interface{}) error {
 	return o.Render(code, value, binding.GZIPJSON)
 }
 
-//JSONOK
-func (o *Output) JSONOK(code int, message string) error {
+// JSONOK
+func (o *Output) GZIPJSONOK(code int, message string) error {
 	return o.JSON(code, lib.InRow{
 		"code":     1,
 		"success":  true,
@@ -56,8 +57,9 @@ func (o *Output) JSONOK(code int, message string) error {
 		"sub_code": "success",
 	})
 }
-//GZIPJSONOK
-func (o *Output) GZIPJSONOK(code int, message string) error {
+
+// GZIPJSONOK
+func (o *Output) GZIPGZIPJSONOK(code int, message string) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     1,
 		"success":  true,
@@ -66,7 +68,8 @@ func (o *Output) GZIPJSONOK(code int, message string) error {
 		"sub_code": "success",
 	})
 }
-//JSONERROR
+
+// JSONERROR
 func (o *Output) JSONERROR(code int, message, subCode string) error {
 	return o.JSON(code, lib.InRow{
 		"code":     0,
@@ -76,7 +79,8 @@ func (o *Output) JSONERROR(code int, message, subCode string) error {
 		"sub_code": subCode,
 	})
 }
-//GZIPJSONERROR
+
+// GZIPJSONERROR
 func (o *Output) GZIPJSONERROR(code int, message, subCode string) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     0,
@@ -86,7 +90,8 @@ func (o *Output) GZIPJSONERROR(code int, message, subCode string) error {
 		"sub_code": subCode,
 	})
 }
-//JSONFail
+
+// JSONFail
 func (o *Output) JSONFail(code int, message string) error {
 	return o.JSON(code, lib.InRow{
 		"code":     0,
@@ -97,7 +102,7 @@ func (o *Output) JSONFail(code int, message string) error {
 	})
 }
 
-//GZIPJSONFail
+// GZIPJSONFail
 func (o *Output) GZIPJSONFail(code int, message string) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     0,
@@ -108,7 +113,7 @@ func (o *Output) GZIPJSONFail(code int, message string) error {
 	})
 }
 
-//JSONObject
+// JSONObject
 func (o *Output) JSONObject(code int, info interface{}) error {
 	return o.JSON(code, lib.InRow{
 		"code":     1,
@@ -120,8 +125,7 @@ func (o *Output) JSONObject(code int, info interface{}) error {
 	})
 }
 
-
-//GZIPJSONObject
+// GZIPJSONObject
 func (o *Output) GZIPJSONObject(code int, info interface{}) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     1,
@@ -133,8 +137,7 @@ func (o *Output) GZIPJSONObject(code int, info interface{}) error {
 	})
 }
 
-
-//JSONList
+// JSONList
 func (o *Output) JSONList(code int, list interface{}) error {
 	return o.JSON(code, lib.InRow{
 		"code":     1,
@@ -146,8 +149,7 @@ func (o *Output) JSONList(code int, list interface{}) error {
 	})
 }
 
-
-//GZIPJSONList
+// GZIPJSONList
 func (o *Output) GZIPJSONList(code int, list interface{}) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     1,
@@ -159,8 +161,7 @@ func (o *Output) GZIPJSONList(code int, list interface{}) error {
 	})
 }
 
-
-//Success 成功输出json
+// Success 成功输出json
 func (o *Output) SuccessJSON(data lib.InRow) error {
 	return o.JSON(200, lib.MergeInRow(lib.InRow{
 		"code":     1,
@@ -171,7 +172,7 @@ func (o *Output) SuccessJSON(data lib.InRow) error {
 	}, data))
 }
 
-//SuccessGZipJSON 成功输出json
+// SuccessGZipJSON 成功输出json
 func (o *Output) SuccessGZipJSON(data lib.InRow) error {
 	return o.GZIPJSON(200, lib.MergeInRow(lib.InRow{
 		"code":     1,
@@ -182,7 +183,7 @@ func (o *Output) SuccessGZipJSON(data lib.InRow) error {
 	}, data))
 }
 
-//JSONPager
+// JSONPager
 func (o *Output) JSONPager(code int, list interface{}, pager interface{}) error {
 	return o.JSON(code, lib.InRow{
 		"code":     1,
@@ -195,8 +196,7 @@ func (o *Output) JSONPager(code int, list interface{}, pager interface{}) error 
 	})
 }
 
-
-//GZIPJSONPager
+// GZIPJSONPager
 func (o *Output) GZIPJSONPager(code int, list interface{}, pager interface{}) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     1,
@@ -209,12 +209,12 @@ func (o *Output) GZIPJSONPager(code int, list interface{}, pager interface{}) er
 	})
 }
 
-//JSONP
+// JSONP
 func (o *Output) JSONP(code int, value interface{}) error {
 	return o.Render(code, value, binding.JSONP)
 }
 
-//Render
+// Render
 func (o *Output) Render(code int, value interface{}, bind binding.Rendering) error {
 	if o.status == 0 && code > 0 {
 		o.status = code
@@ -225,32 +225,32 @@ func (o *Output) Render(code int, value interface{}, bind binding.Rendering) err
 	return nil
 }
 
-//HTML
+// HTML
 func (o *Output) HTML(code int, name string, value interface{}) error {
 	bind := binding.NewHTML(name, o.templ)
 	return o.Render(code, value, bind)
 }
 
-//XML
+// XML
 func (o *Output) XML(code int, value interface{}) error {
 	return o.Render(code, value, binding.XML)
 }
 
-//YAML
+// YAML
 func (o *Output) YAML(code int, value interface{}) error {
 	return o.Render(code, value, binding.YAML)
 }
 
-//Text
+// Text
 func (o *Output) Text(code int, value interface{}) error {
 	return o.Render(code, value, binding.TEXT)
 }
 
-//Redirect 跳转
+// Redirect 跳转
 func (o *Output) Redirect(code int, location string) {
-	defer func(){
-		if ex:=recover();ex!=nil{
-			log.DebugPrint("异常捕获 Redirect 请求:%s,错误:%v",o.in.R().URL.Path,ex)
+	defer func() {
+		if ex := recover(); ex != nil {
+			log.DebugPrint("异常捕获 Redirect 请求:%s,错误:%v", o.in.R().URL.Path, ex)
 		}
 	}()
 	if o.status == 0 && code > 0 {
@@ -259,11 +259,11 @@ func (o *Output) Redirect(code int, location string) {
 	}
 }
 
-//NotFound 404
+// NotFound 404
 func (o *Output) NotFound() {
-	defer func(){
-		if ex:=recover();ex!=nil{
-			log.DebugPrint("异常捕获 NotFound 请求:%s,错误:%v",o.in.R().URL.Path,ex)
+	defer func() {
+		if ex := recover(); ex != nil {
+			log.DebugPrint("异常捕获 NotFound 请求:%s,错误:%v", o.in.R().URL.Path, ex)
 		}
 	}()
 	if o.status == 0 {
@@ -274,7 +274,7 @@ func (o *Output) NotFound() {
 	}
 }
 
-//HasOutput 是否输出了 true已经输出 false 未输出
+// HasOutput 是否输出了 true已经输出 false 未输出
 func (o *Output) HasOutput() bool {
 	if o.status == 0 {
 		return false
@@ -282,7 +282,7 @@ func (o *Output) HasOutput() bool {
 	return true
 }
 
-//NewInput 新建一个input
+// NewInput 新建一个input
 func NewOutput() *Output {
 	return &Output{}
 }
