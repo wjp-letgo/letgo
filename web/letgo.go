@@ -49,14 +49,19 @@ func Run(addr ...string) {
 		log.DebugPrint("%s",logo)
 		log.DebugPrint("Start web server Pid:%d",pid)
 		if err:=httpServer().Run(addr...);err!=nil{
-			//log.DebugPrint("letgo stop :%v", err)
+			log.DebugPrint("letgo stop :%v", err)
 		}
 	}()
 	waitSignal()
 }
 //waitSignal 监控信号
 func waitSignal(){
-	quit:=make(chan os.Signal)
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println("waitSignal,err:", err)
+		}
+	}()
+	quit:=make(chan os.Signal,1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 	pid:=os.Getpid()
 	for {
@@ -108,7 +113,7 @@ func RunTLS(certFile, keyFile string, addr ...string) {
 		pid:=os.Getpid()
 		log.DebugPrint("Start web server Pid:%d",pid)
 		if err:=httpServer().RunTLS(certFile, keyFile,addr...);err!=nil{
-			//log.DebugPrint("Letgo Start fail :%v", err)
+			log.DebugPrint("Letgo Start fail :%v", err)
 		}
 	}()
 	waitSignal()
