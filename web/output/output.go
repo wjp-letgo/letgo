@@ -48,7 +48,7 @@ func (o *Output) GZIPJSON(code int, value interface{}) error {
 }
 
 // JSONOK
-func (o *Output) GZIPJSONOK(code int, message string) error {
+func (o *Output) JSONOK(code int, message string) error {
 	return o.JSON(code, lib.InRow{
 		"code":     1,
 		"success":  true,
@@ -59,7 +59,7 @@ func (o *Output) GZIPJSONOK(code int, message string) error {
 }
 
 // GZIPJSONOK
-func (o *Output) GZIPGZIPJSONOK(code int, message string) error {
+func (o *Output) GZIPJSONOK(code int, message string) error {
 	return o.GZIPJSON(code, lib.InRow{
 		"code":     1,
 		"success":  true,
