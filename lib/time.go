@@ -76,7 +76,7 @@ func TimeToFormat(t int, format string) string {
 
 //将当前时间转字符串
 func TimeFormat(format string) string {
-	tm := time.Unix(TimeLong(), 0)
+	tm := time.Unix(TimeLong()/1000, 0)
 	return tm.Format(format)
 }
 
@@ -88,7 +88,7 @@ func UTCTime() string{
 
 //将时间戳转字符串并格式化
 func TimeLongToFormat(t int64, format string) string {
-	tm := time.Unix(t, 0)
+	tm := time.Unix(t/1000, 0)
 	return tm.Format(format)
 }
 
