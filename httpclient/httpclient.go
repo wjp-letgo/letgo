@@ -514,7 +514,7 @@ func HttpBuildQuery(values lib.InRow) string{
 				paramsValue.Add(k,fmt.Sprintf("%d",s))
 			}
 		default:
-			vs:=(&lib.Data{Value: v}).String()
+			vs:=fmt.Sprint(v)
 			paramsValue.Add(k,vs)
 		}
 		
