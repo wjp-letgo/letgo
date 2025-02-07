@@ -214,7 +214,9 @@ func StringToXmlObject(str string, data interface{}) bool {
 //JSONToMap
 func JSONToMap(str string) InRow {
 	var tempMap InRow
-	err := json.Unmarshal([]byte(str), &tempMap)
+	decoder := json.NewDecoder(strings.NewReader(str))
+	decoder.UseNumber()
+	err :=decoder.Decode(&tempMap)
 	if err != nil {
 		return nil
 	}
