@@ -1,6 +1,7 @@
 package input
 
 import (
+	"compress/gzip"
 	"bytes"
 	"errors"
 	"io"
@@ -136,7 +137,17 @@ func (i *Input) set(method, key string, value interface{}) {
 func (i *Input) Init(request *http.Request) {
 	i.Method = request.Method
 	i.request = request
-	i.body, _ = ioutil.ReadAll(i.request.Body)
+	if request.Header.Get("Content-Encoding") == "gzip" {
+		gzipReader, err := gzip.NewReader(i.request.Body)
+		if err != nil {
+			log.DebugPrint("error on parse body gzip: %v", err)
+			return
+		}
+		defer gzipReader.Close()
+		i.body, _ = ioutil.ReadAll(gzipReader)
+	}else{
+		i.body, _ = ioutil.ReadAll(i.request.Body)
+	}
 	i.request.Body.Close()
 	i.request.Body = ioutil.NopCloser(bytes.NewBuffer(i.body))
 	err := i.request.ParseMultipartForm(defaultMultipartMem)
