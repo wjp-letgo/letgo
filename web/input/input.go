@@ -1,8 +1,8 @@
 package input
 
 import (
-	"compress/gzip"
 	"bytes"
+	"compress/gzip"
 	"errors"
 	"io"
 	"io/ioutil"
@@ -23,7 +23,7 @@ const defaultMultipartMem = 64 << 20 //64MB
 
 type UploadFunc func(*multipart.FileHeader) //上传回调
 
-//Input
+// Input
 type Input struct {
 	Method  string
 	params  lib.Row
@@ -33,12 +33,12 @@ type Input struct {
 	body    []byte
 }
 
-//R 获取请求
+// R 获取请求
 func (i *Input) R() *http.Request {
 	return i.request
 }
 
-//Param 获得参数
+// Param 获得参数
 func (i *Input) Param(key string, value ...interface{}) *lib.Data {
 	if _, ok := i.params[key]; !ok {
 		if len(value) > 0 && value[0] != nil {
@@ -51,17 +51,17 @@ func (i *Input) Param(key string, value ...interface{}) *lib.Data {
 	return i.params[key]
 }
 
-//SetParam 设置参数
+// SetParam 设置参数
 func (i *Input) SetParam(key string, value interface{}) {
 	i.set("params", key, value)
 }
 
-//Param 获得参数
+// Param 获得参数
 func (i *Input) ParamRaw() lib.Row {
 	return i.params
 }
 
-//Get 获得参数
+// Get 获得参数
 func (i *Input) Get(key string, value ...interface{}) *lib.Data {
 	if _, ok := i.get[key]; !ok {
 		if len(value) > 0 && value[0] != nil {
@@ -74,22 +74,22 @@ func (i *Input) Get(key string, value ...interface{}) *lib.Data {
 	return i.get[key]
 }
 
-//GetRaw 获得参数
+// GetRaw 获得参数
 func (i *Input) GetRaw() lib.Row {
 	return i.get
 }
 
-//SetGet 设置参数
+// SetGet 设置参数
 func (i *Input) SetGet(key string, value interface{}) {
 	i.set("get", key, value)
 }
 
-//BodyBytes 内容
+// BodyBytes 内容
 func (i *Input) BodyBytes() []byte {
 	return i.body
 }
 
-//Body
+// Body
 func (i *Input) Body() string {
 	b := i.BodyBytes()
 	if b != nil {
@@ -98,7 +98,7 @@ func (i *Input) Body() string {
 	return ""
 }
 
-//Post 获得参数
+// Post 获得参数
 func (i *Input) Post(key string, value ...interface{}) *lib.Data {
 	if _, ok := i.post[key]; !ok {
 		if len(value) > 0 && value[0] != nil {
@@ -111,17 +111,17 @@ func (i *Input) Post(key string, value ...interface{}) *lib.Data {
 	return i.post[key]
 }
 
-//GetRaw 获得参数
+// GetRaw 获得参数
 func (i *Input) PostRaw() lib.Row {
 	return i.post
 }
 
-//SetPost 设置参数
+// SetPost 设置参数
 func (i *Input) SetPost(key string, value interface{}) {
 	i.set("post", key, value)
 }
 
-//set 设置参数
+// set 设置参数
 func (i *Input) set(method, key string, value interface{}) {
 	switch method {
 	case "params":
@@ -133,7 +133,7 @@ func (i *Input) set(method, key string, value interface{}) {
 	}
 }
 
-//Init 初始化
+// Init 初始化
 func (i *Input) Init(request *http.Request) {
 	i.Method = request.Method
 	i.request = request
@@ -145,15 +145,17 @@ func (i *Input) Init(request *http.Request) {
 		}
 		defer gzipReader.Close()
 		i.body, _ = ioutil.ReadAll(gzipReader)
-	}else{
+	} else {
 		i.body, _ = ioutil.ReadAll(i.request.Body)
 	}
 	i.request.Body.Close()
 	i.request.Body = ioutil.NopCloser(bytes.NewBuffer(i.body))
-	err := i.request.ParseMultipartForm(defaultMultipartMem)
-	if err != nil {
-		if err != http.ErrNotMultipart {
-			log.DebugPrint("error on parse multipart form array: %v", err)
+	if !strings.Contains(request.Header.Get("content-type"), "application/json") {
+		err := i.request.ParseMultipartForm(defaultMultipartMem)
+		if err != nil {
+			if err != http.ErrNotMultipart {
+				log.DebugPrint("error on parse multipart form array: %v", err)
+			}
 		}
 	}
 	i.initQuery()
@@ -161,7 +163,7 @@ func (i *Input) Init(request *http.Request) {
 	i.initJson()
 }
 
-//initJson
+// initJson
 func (i *Input) initJson() {
 	if strings.Index(i.ContentType(), "application/json") != -1 {
 		var result map[string]interface{}
@@ -173,7 +175,7 @@ func (i *Input) initJson() {
 	}
 }
 
-//initQuery
+// initQuery
 func (i *Input) initQuery() {
 	query := i.request.URL.Query()
 	for k, v := range query {
@@ -187,7 +189,7 @@ func (i *Input) initQuery() {
 	}
 }
 
-//File
+// File
 func (i *Input) File(name string) (*multipart.FileHeader, error) {
 	if i.request.MultipartForm == nil {
 		return nil, errors.New("MultipartForm is nil")
@@ -203,7 +205,7 @@ func (i *Input) File(name string) (*multipart.FileHeader, error) {
 	return nil, errors.New("file does not exist")
 }
 
-//SaveUploadFile
+// SaveUploadFile
 func (i *Input) SaveUploadFile(name, dst string) error {
 	f, err := i.File(name)
 	if err != nil {
@@ -224,7 +226,7 @@ func (i *Input) SaveUploadFile(name, dst string) error {
 	return err
 }
 
-//SaveUploadFileByDir
+// SaveUploadFileByDir
 func (i *Input) SaveUploadFileByDir(name, dir string) (string, error) {
 	f, err := i.File(name)
 	if err != nil {
@@ -250,7 +252,7 @@ func (i *Input) SaveUploadFileByDir(name, dir string) (string, error) {
 	return dir, err
 }
 
-//SaveUploadByFunc
+// SaveUploadByFunc
 func (i *Input) SaveUploadByFunc(name string, callback UploadFunc) error {
 	f, err := i.File(name)
 	if err != nil {
@@ -260,7 +262,7 @@ func (i *Input) SaveUploadByFunc(name string, callback UploadFunc) error {
 	return nil
 }
 
-//initForm
+// initForm
 func (i *Input) initForm() {
 	for k, v := range i.request.PostForm {
 		if len(v) == 1 {
@@ -273,7 +275,7 @@ func (i *Input) initForm() {
 	}
 }
 
-//ClientIp 客户端IP
+// ClientIp 客户端IP
 func (i *Input) ClientIp() string {
 	var addr string
 	headerlock.HeaderMapMutex.RLock()
@@ -301,7 +303,7 @@ func (i *Input) ClientIp() string {
 	return ip
 }
 
-//ContentType
+// ContentType
 func (i *Input) ContentType() string {
 	headerlock.HeaderMapMutex.RLock()
 	ct := i.request.Header.Get("Content-Type")
@@ -310,39 +312,39 @@ func (i *Input) ContentType() string {
 
 }
 
-//Bind
+// Bind
 func (i *Input) Bind(value interface{}) error {
 	bind := binding.NewBind(i.ContentType())
 	return i.BindWith(value, bind)
 }
 
-//BindJSON
+// BindJSON
 func (i *Input) BindJSON(value interface{}) error {
 	return i.BindWith(value, binding.JSON)
 }
 
-//BindJSONByKey
-func (i *Input) BindJSONByKey(key string,value interface{}) bool {
-	data:=i.Param(key).Value
-	return lib.StringToObject(lib.ObjectToString(data),value)
+// BindJSONByKey
+func (i *Input) BindJSONByKey(key string, value interface{}) bool {
+	data := i.Param(key).Value
+	return lib.StringToObject(lib.ObjectToString(data), value)
 }
 
-//BindXML
+// BindXML
 func (i *Input) BindXML(value interface{}) error {
 	return i.BindWith(value, binding.XML)
 }
 
-//BindYAML
+// BindYAML
 func (i *Input) BindYAML(value interface{}) error {
 	return i.BindWith(value, binding.YAML)
 }
 
-//BindWith
+// BindWith
 func (i *Input) BindWith(value interface{}, bind binding.Binding) error {
 	return bind.Bind(i.request, i.body, value)
 }
 
-//NewInput 新建一个input
+// NewInput 新建一个input
 func NewInput() *Input {
 	return &Input{
 		params: make(lib.Row),
