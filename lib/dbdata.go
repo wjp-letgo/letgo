@@ -87,6 +87,9 @@ func (s SqlRow)Bind(value interface{})bool{
 	return StringToObject(ObjectToString(s.ToOutput()), value) 
 }
 
+//批量拆入语句
+type SqlIns []SqlIn
+
 //SqlIn sql插入更新数据格式
 type SqlIn InRow
 type SqlRaw string //原生sql语句字符串

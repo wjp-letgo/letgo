@@ -76,3 +76,23 @@ func TestInsertModel(t *testing.T) {
 	})
 }
 
+
+func TestInsertsModel(t *testing.T) {
+	model:=NewModel("xingtool_base","test3")
+	var datas lib.SqlIns
+	datas=append(datas, lib.SqlIn{
+		"name":"1",
+	})
+	datas=append(datas, lib.SqlIn{
+		"name":"2",
+	})
+	datas=append(datas, lib.SqlIn{
+		"name":"3",
+	})
+	datas=append(datas, lib.SqlIn{
+		"name":"4",
+	})
+	ids:=model.Inserts(datas,2)
+	fmt.Println("ids",ids)
+	fmt.Println("sql",model.GetLastSql())
+}

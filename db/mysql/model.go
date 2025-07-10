@@ -75,6 +75,7 @@ type Modeler interface {
 	Pager(page, pageSize int) (lib.SqlRows, lib.SqlRow)
 	Update(data lib.SqlIn) int64
 	Insert(row lib.SqlIn) int64
+	Inserts(rows lib.SqlIns,maxTrans int) []int64
 	Create(row lib.SqlIn) int64
 	Replace(row lib.SqlIn) int64
 	InsertOnDuplicate(row lib.SqlIn, updateRow lib.SqlIn) int64
@@ -1329,6 +1330,21 @@ func (m *Model) Insert(row lib.SqlIn) int64 {
 	table := NewTable(m.db, m.tableName)
 	row = m.addDeleteTime(row)
 	id := table.Insert(row)
+	m.lastSql = table.GetLastSql()
+	m.preSql, m.preParams = table.GetSqlInfo()
+	m.clear()
+	return id
+}
+
+
+// Inserts 批量插入操作
+func (m *Model) Inserts(rows lib.SqlIns,maxTrans int) []int64 {
+	defer m.resetSoftDel()
+	table := NewTable(m.db, m.tableName)
+	for k,row:=range rows{
+		rows[k] = m.addDeleteTime(row)
+	}
+	id := table.Inserts(rows,maxTrans)
 	m.lastSql = table.GetLastSql()
 	m.preSql, m.preParams = table.GetSqlInfo()
 	m.clear()
