@@ -17,7 +17,7 @@ type Rendering interface{
 }
 const (
 	MIMEJSON              = "application/json"
-	MIMEJSONUTF8              = "application/json;charset=utf-8"
+	MIMEJSONUTF8          = "application/json;charset=utf-8"
 	MIMEXML               = "application/xml"
 	MIMEXML2              = "text/xml"
 	MIMEYAML              = "application/x-yaml"
@@ -31,6 +31,7 @@ var (
 	JSONP=jsonpBinding{}
 	GZIPJSONP=gzipJsonpBinding{}
 	TEXT=textBinding{}
+	GZIPTEXT=gzipTextBinding{}
 )
 func NewBind(contentType string)Binding{
 	switch contentType {

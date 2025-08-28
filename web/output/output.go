@@ -246,6 +246,11 @@ func (o *Output) Text(code int, value interface{}) error {
 	return o.Render(code, value, binding.TEXT)
 }
 
+// GzipText
+func (o *Output) GzipText(code int, value interface{}) error {
+	return o.Render(code, value, binding.GZIPTEXT)
+}
+
 // Redirect 跳转
 func (o *Output) Redirect(code int, location string) {
 	defer func() {
