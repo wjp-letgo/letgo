@@ -39,10 +39,10 @@ type Master interface {
 	SetNx(key string, value interface{}) bool
 	Get(key string, value interface{}) bool
 	GetNoFix(key string, value interface{}) bool
-	Incr(key string) bool
-	Incrby(key string,num int64) bool
-	Decr(key string) bool
-	Decrby(key string,num int64) bool
+	Incr(key string) int64
+	Incrby(key string,num int64) int64
+	Decr(key string) int64
+	Decrby(key string,num int64) int64
 	Del(key string) bool
 	Ttl(key string) int64
 	Expire(key string, overtime int64) bool
@@ -172,51 +172,51 @@ func (r *Redis) SetNoFix(key string, value interface{}, overtime int64) bool {
 }
 
 // Incr  操作
-func (r *Redis) Incr(key string) bool {
+func (r *Redis) Incr(key string) int64 {
 	rds := r.getRedis().Get()
 	defer rds.Close()
-	_, err := rds.Do("INCR", key)
+	v, err := rds.Do("INCR", key)
 	if err != nil {
 		log.DebugPrint("redis Incr fail: %s", err.Error())
-		return false
+		return -1
 	}
-	return true
+	return lib.InterfaceToInt64(v)
 }
 
 // Incrby  操作
-func (r *Redis) Incrby(key string,num int64) bool {
+func (r *Redis) Incrby(key string,num int64) int64 {
 	rds := r.getRedis().Get()
 	defer rds.Close()
-	_, err := rds.Do("INCRBY", key,num)
+	v, err := rds.Do("INCRBY", key,num)
 	if err != nil {
 		log.DebugPrint("redis Incrby fail: %s", err.Error())
-		return false
+		return -1
 	}
-	return true
+	return lib.InterfaceToInt64(v)
 }
 
 // Decr 操作
-func (r *Redis) Decr(key string) bool {
+func (r *Redis) Decr(key string) int64 {
 	rds := r.getRedis().Get()
 	defer rds.Close()
-	_, err := rds.Do("DECR", key)
+	v, err := rds.Do("DECR", key)
 	if err != nil {
 		log.DebugPrint("redis Decr fail: %s", err.Error())
-		return false
+		return -1
 	}
-	return true
+	return lib.InterfaceToInt64(v)
 }
 
 // Decrby  操作
-func (r *Redis) Decrby(key string,num int64) bool {
+func (r *Redis) Decrby(key string,num int64) int64 {
 	rds := r.getRedis().Get()
 	defer rds.Close()
-	_, err := rds.Do("DECRBY", key,num)
+	v, err := rds.Do("DECRBY", key,num)
 	if err != nil {
 		log.DebugPrint("redis Decrby fail: %s", err.Error())
-		return false
+		return -1
 	}
-	return true
+	return lib.InterfaceToInt64(v)
 }
 
 // SetNx SetNx 操作
