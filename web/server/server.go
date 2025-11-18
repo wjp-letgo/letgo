@@ -67,6 +67,15 @@ func (s *Server)Run(addr ...string)error {
 func(s *Server)RunTLS(certFile, keyFile string, addr ...string)error{
 	address:=lib.ResolveAddress(addr)
 	s.httpServer = &http.Server{Addr: address, Handler: s}
+	if len(addr)>2{
+		s.httpServer.ReadTimeout=time.Duration(lib.StrToInt64(addr[2]))*time.Second
+	}
+	if len(addr)>3{
+		s.httpServer.WriteTimeout=time.Duration(lib.StrToInt64(addr[3]))*time.Second
+	}
+	if len(addr)>4{
+		s.httpServer.IdleTimeout=time.Duration(lib.StrToInt64(addr[4]))*time.Second
+	}
 	return s.httpServer.ListenAndServeTLS(certFile, keyFile)
 }
 //RegisterRouter 注册路由
