@@ -4,6 +4,7 @@ import (
 	syscontext "context"
 	"net/http"
 	"sync"
+	"time"
 
 	"github.com/wjp-letgo/letgo/lib"
 	"github.com/wjp-letgo/letgo/log"
@@ -47,8 +48,18 @@ func (s *Server)handleHttpRequest(c *context.Context){
 func (s *Server)Run(addr ...string)error {
 	address:=lib.ResolveAddress(addr)
 	//fmt.Println(address)
+	
 	log.DebugPrint("Start server address:%s",address)
 	s.httpServer = &http.Server{Addr: address, Handler: s}
+	if len(addr)>2{
+		s.httpServer.ReadTimeout=time.Duration(lib.StrToInt64(addr[2]))*time.Second
+	}
+	if len(addr)>3{
+		s.httpServer.WriteTimeout=time.Duration(lib.StrToInt64(addr[3]))*time.Second
+	}
+	if len(addr)>4{
+		s.httpServer.IdleTimeout=time.Duration(lib.StrToInt64(addr[4]))*time.Second
+	}
 	return s.httpServer.ListenAndServe()
 }
 

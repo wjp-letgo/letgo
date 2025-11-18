@@ -92,7 +92,7 @@ func ResolveAddress(addr []string) string {
 	case 2:
 		return fmt.Sprintf("%s:%s", addr[0], addr[1])
 	default:
-		panic("too many parameters")
+		return fmt.Sprintf("%s:%s", addr[0], addr[1])
 	}
 }
 
