@@ -730,7 +730,8 @@ func NewDB() *DB {
 			Slave:  slaves,
 		})
 		file.PutContent(dbFile, fmt.Sprintf("%v", configs))
-		log.PanicPrint("please setting database config in config/db.config file")
+		cfgFile = file.GetContent(dbFile)
+		// log.PanicPrint("please setting database config in config/db.config file")
 	}
 	lib.StringToObject(cfgFile, &configs)
 	var db DB

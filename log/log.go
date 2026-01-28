@@ -78,7 +78,8 @@ func init() {
 			LogFilePath:"",//when Writer is file
 		}
 		file.PutContent(logFile,fmt.Sprintf("%v",logConfig))
-		panic("please setting log config in config/log.config file")
+		cfgFile=file.GetContent(logFile)
+		// panic("please setting log config in config/log.config file")
 	}
 	lib.StringToObject(cfgFile,&config)
 }

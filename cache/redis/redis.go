@@ -854,7 +854,8 @@ func NewRedis() Rediser {
 			Slave:  slaves,
 		}
 		file.PutContent(redisFile, fmt.Sprintf("%v", config))
-		log.PanicPrint("please setting redis config in config/redis.config file")
+		cfgFile = file.GetContent(redisFile)
+		// log.PanicPrint("please setting redis config in config/redis.config file")
 	}
 	lib.StringToObject(cfgFile, &config)
 	var rds Redis

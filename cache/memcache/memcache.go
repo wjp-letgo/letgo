@@ -121,7 +121,8 @@ func NewMemcache()icache.ICacher{
 			Slave:slaves,
 		}
 		file.PutContent(memcacheFile,fmt.Sprintf("%v",config))
-		panic("please setting redis config in config/memcached.config file")
+		cfgFile=file.GetContent(memcacheFile)
+		// panic("please setting redis config in config/memcached.config file")
 	}
 	lib.StringToObject(cfgFile, &config)
 	var rds Memcach

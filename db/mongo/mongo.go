@@ -71,7 +71,8 @@ func NewDB()*MongoDB{
 		}
 		configs=append(configs,db)
 		file.PutContent(dbFile,fmt.Sprintf("%v",configs))
-		log.PanicPrint("please setting mongo database config in config/mongo_db.config file")
+		// log.PanicPrint("please setting mongo database config in config/mongo_db.config file")
+		cfgFile=file.GetContent(dbFile)
 	}
 	lib.StringToObject(cfgFile, &configs)
 	var db MongoDB

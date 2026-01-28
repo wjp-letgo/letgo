@@ -117,7 +117,8 @@ func init() {
 			Path:   "session",
 		}
 		file.PutContent(sessionFile, fmt.Sprintf("%v", sessionConfig))
-		panic("please setting session config in config/session.config file")
+		// panic("please setting session config in config/session.config file")
+		cfgFile = file.GetContent(sessionFile)
 	}
 	lib.StringToObject(cfgFile, &config)
 }
