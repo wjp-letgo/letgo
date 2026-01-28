@@ -139,7 +139,6 @@ func (g *genInfo) genModel(table string) {
 	//tableName:=g.getTableName(table)
 	content := fmt.Sprintf(
 		g.getModelTemplate(),
-		g.moduleName,
 		modelName,
 		modelName,
 		modelName,
@@ -210,7 +209,6 @@ func (g *genInfo) getModelTemplate() string {
 import (
     "github.com/wjp-letgo/letgo/db/mysql"
     "github.com/wjp-letgo/letgo/lib"
-	"%s/model/entity"
 )
 
 //%s
