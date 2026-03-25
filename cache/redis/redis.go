@@ -45,6 +45,7 @@ type Master interface {
 	Decrby(key string,num int64) int64
 	Del(key string) bool
 	Ttl(key string) int64
+	PTtl(key string) int64
 	Expire(key string, overtime int64) bool
 	PExpire(key string, overtime int64) bool
 	Len(key string) int64
@@ -287,6 +288,18 @@ func (r *Redis) Ttl(key string) int64 {
 	v, err := redis.Int64(rds.Do("TTL", key))
 	if err != nil {
 		log.DebugPrint("redis ttl fail: %s", err.Error())
+		return -1
+	}
+	return v
+}
+
+// PTtl PTtl
+func (r *Redis) PTtl(key string) int64 {
+	rds := r.getRedis().Get()
+	defer rds.Close()
+	v, err := redis.Int64(rds.Do("PTTL", key))
+	if err != nil {
+		log.DebugPrint("redis pttl fail: %s", err.Error())
 		return -1
 	}
 	return v
