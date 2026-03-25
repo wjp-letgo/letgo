@@ -46,6 +46,7 @@ type Master interface {
 	Del(key string) bool
 	Ttl(key string) int64
 	Expire(key string, overtime int64) bool
+	PExpire(key string, overtime int64) bool
 	Len(key string) int64
 	FlushDB() bool
 	Exists(key string) bool
@@ -298,6 +299,18 @@ func (r *Redis) Expire(key string, overtime int64) bool {
 	_, err := rds.Do("EXPIRE", key, overtime)
 	if err != nil {
 		log.DebugPrint("redis expire fail: %s", err.Error())
+		return false
+	}
+	return true
+}
+
+// PExpire PExpire操作
+func (r *Redis) PExpire(key string, overtime int64) bool {
+	rds := r.getRedis().Get()
+	defer rds.Close()
+	_, err := rds.Do("PEXPIRE", key, overtime)
+	if err != nil {
+		log.DebugPrint("redis pexpire fail: %s", err.Error())
 		return false
 	}
 	return true
