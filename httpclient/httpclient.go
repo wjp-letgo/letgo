@@ -80,6 +80,7 @@ type Httper interface{
 	PostJson(url string,value interface{})*HttpResponse
 	PostXml(url string,value interface{})*HttpResponse
 	PostMultipart(url string,values lib.InRow)*HttpResponse
+	PostRaw(url string,reqbody string) *HttpResponse
 	Delete(url string,values lib.InRow)*HttpResponse
 	Options(url string,values lib.InRow)*HttpResponse
 	Head(url string)*HttpResponse
@@ -189,6 +190,17 @@ func(h *HttpClient)Post(url string,values lib.InRow) *HttpResponse{
 		h.WithHeader("Content-Type", "application/x-www-form-urlencoded")
 	}
 	body:=strings.NewReader(HttpBuildQuery(values))
+	client:=h.getClient()
+	req:=h.getRequest(url,"POST",body)
+	return h.getResponse(client.Do(req))
+}
+
+//PostRaw 请求
+func(h *HttpClient)PostRaw(url string,reqbody string) *HttpResponse{
+	if _,ok:=h.headers["Content-Type"];!ok{
+		h.WithHeader("Content-Type", "application/x-www-form-urlencoded")
+	}
+	body:=strings.NewReader(reqbody)
 	client:=h.getClient()
 	req:=h.getRequest(url,"POST",body)
 	return h.getResponse(client.Do(req))
